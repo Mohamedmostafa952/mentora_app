@@ -2,19 +2,41 @@ import 'package:flutter/material.dart';
 import 'package:mentora_app/presentation/authentication/widgets/custom_text_form_field.dart';
 
 class CustomDateRow extends StatelessWidget {
-  const CustomDateRow({super.key, required this.text, required this.textOfTextField});
+  const CustomDateRow({super.key, required this.text,});
 
   final String text;
-  final String textOfTextField;
 
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Expanded(child: Text(text, style: Theme.of(context).textTheme.bodyMedium,)),
+        Expanded(flex: 2,child: Text(text, style: Theme.of(context).textTheme.bodyMedium,)),
         Spacer(),
-        Expanded(child: CustomTextFormField(text: textOfTextField))
+        Expanded(
+            flex: 4,
+            child: CustomTextFormField(text: "YYYY",
+        onValidator: (newValue){
+          if(newValue == null || newValue.isEmpty){
+            return "required";
+          }
+          else if(!isValidYear(newValue)){
+            return "Enter a valid year";
+          }
+          return null;
+        },
+        ))
       ],
     );
+  }
+  bool isValidYear(String year) {
+    if (year.isEmpty) return false;
+
+    final yearInt = int.tryParse(year);
+    if (yearInt == null) return false; // Not a number
+
+    final currentYear = DateTime.now().year;
+
+    // Example: Birth year (1900–current year)
+    return yearInt >= 1900 && yearInt <= currentYear;
   }
 }
