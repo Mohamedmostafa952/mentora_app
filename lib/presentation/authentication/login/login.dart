@@ -6,6 +6,7 @@ import 'package:mentora_app/config/widgets/custom_text_button.dart';
 import 'package:mentora_app/core/assets_manager.dart';
 import 'package:mentora_app/core/colors_manager.dart';
 import 'package:mentora_app/core/routes_manager.dart';
+import 'package:mentora_app/presentation/authentication/widgets/custom_row.dart';
 import 'package:mentora_app/presentation/authentication/widgets/custom_text_form_field.dart';
 
 class Login extends StatefulWidget {
@@ -64,7 +65,7 @@ class _LoginState extends State<Login> {
                           ),
                         ),
                         SizedBox(width: 12.w,),
-                        Text("or with", style: Theme.of(context).textTheme.bodySmall,),
+                        Text("or with", style: Theme.of(context).textTheme.bodyMedium,),
                         SizedBox(width: 12.w,),
                         Expanded(
                           child: Container(
@@ -84,17 +85,9 @@ class _LoginState extends State<Login> {
                       ],
                     ),
                     SizedBox(height: 30.h,),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text("Don’t have an account?", 
-                          style: Theme.of(context).textTheme.bodySmall,
-                        ),
-                        CustomTextButton(text: "Signup", onPress: (){
-                          Navigator.pushNamed(context, RoutesManager.signup);
-                        })
-                      ],
-                    )
+                    CustomRow(text: "Don’t have an account?", buttonText: "Signup", onPress: (){
+                      Navigator.pushNamed(context, RoutesManager.signup);
+                    })
                   ],
                 ),
               ),
