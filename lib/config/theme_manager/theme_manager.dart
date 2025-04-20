@@ -6,8 +6,11 @@ import 'package:mentora_app/core/colors_manager.dart';
 class ThemeManager {
   static final ThemeData themeData = ThemeData(
     scaffoldBackgroundColor: ColorsManager.white,
+    appBarTheme: AppBarTheme(
+      backgroundColor: Colors.white,
+    ),
     textTheme: TextTheme(
-      bodySmall: GoogleFonts.itim(
+      bodyMedium: GoogleFonts.itim(
         fontSize: 20.sp,
         fontWeight: FontWeight.normal,
         color: ColorsManager.black,
@@ -17,6 +20,16 @@ class ThemeManager {
         fontWeight: FontWeight.normal,
         color: ColorsManager.blue,
       ),
+      titleSmall: GoogleFonts.itim(
+        fontSize: 14.sp,
+        fontWeight: FontWeight.normal,
+        color: ColorsManager.blue,
+      ),
+      bodySmall: GoogleFonts.itim(
+        fontSize: 16,
+        color: ColorsManager.black.withOpacity(0.7),
+        fontWeight: FontWeight.normal
+      )
     ),
     inputDecorationTheme: InputDecorationTheme(
       hintStyle: GoogleFonts.itim(
@@ -47,10 +60,6 @@ class ThemeManager {
     textButtonTheme: TextButtonThemeData(
       style: TextButton.styleFrom(
         foregroundColor: ColorsManager.blue,
-        textStyle: GoogleFonts.itim(
-          decoration: TextDecoration.underline,
-          fontSize: 20.sp,
-        )
       )
     ),
     elevatedButtonTheme: ElevatedButtonThemeData(
@@ -64,6 +73,6 @@ class ThemeManager {
           fontSize: 20.sp,
         )
       )
-    )
+    ),
   );
 }
