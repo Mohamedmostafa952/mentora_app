@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mentora_app/config/widgets/custom_text_button.dart';
+import 'package:mentora_app/core/widgets/custom_text_button.dart';
 
 class CustomRow extends StatelessWidget {
   const CustomRow({super.key, required this.text, required this.buttonText, required this.onPress});
