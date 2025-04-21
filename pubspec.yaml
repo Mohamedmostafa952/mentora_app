@@ -40,6 +40,8 @@ dependencies:
   flutter_svg: ^2.0.17
   dropdown_search: ^6.0.2
   searchfield: ^1.2.7
+  introduction_screen: ^3.1.17
+  lottie: ^3.3.1
 
 dev_dependencies:
   flutter_test:
@@ -67,6 +69,7 @@ flutter:
   assets:
     - assets/images/
     - assets/icons/
+    - assets/onboarding_animations/
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

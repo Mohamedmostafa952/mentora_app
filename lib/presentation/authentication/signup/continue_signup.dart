@@ -1,4 +1,4 @@
-import 'package:dropdown_search/dropdown_search.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mentora_app/core/assets_manager.dart';
@@ -21,22 +21,36 @@ class ContinueSignup extends StatefulWidget {
 
 class _ContinueSignupState extends State<ContinueSignup> {
   String? selectedGender;
-  SearchFieldListItem<String> selectedRole = SearchFieldListItem<String>(
-    '',
-    item: '',
-  );
-
-  // SearchFieldListItem<String> selectedValue = SearchFieldListItem<String>(
-  //   '',
-  //   item: '',
-  // );
-  TextEditingController searchController = TextEditingController();
+  List<String> suggestions = [
+    'Front end Developer',
+    'Product Manager',
+    'Data Scientist',
+    'Software Engineer',
+    'Back end Developer',
+    'Mobile Developer',
+    'UX/UI Designer',
+    'DevOps Engineer',
+    'QA Engineer',
+    'Full Stack Developer',
+    'System Architect',
+    'Technical Lead',
+    'Engineering Manager',
+    'AI/ML Engineer',
+    'Cloud Engineer',
+    'Student',
+  ];
+  SearchFieldListItem<String>? selectedRole;
   String? selectedDegree;
-  final dropDownKey = GlobalKey<DropdownSearchState>();
   var formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
+    Widget searchChild(x, {bool isSelected = false}) => Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 12),
+      child: Text(x,
+          style: TextStyle(
+              fontSize: 18.sp, color: isSelected ? Colors.blue : null)),
+    );
     return Scaffold(
       appBar: AppBar(
         leading: ArrowBackIcon(
@@ -75,36 +89,44 @@ class _ContinueSignupState extends State<ContinueSignup> {
                         },
                       ),
                       SizedBox(height: 16.h),
-                      buildSearchDropDownMenu(
-                        hintText: "Choose Your Role",
-                        dropDownList: [
-                          'Front end Developer',
-                          'Product Manager',
-                          'Data Scientist',
-                          'Software Engineer',
-                          'Back end Developer',
-                          'Mobile Developer',
-                          'UX/UI Designer',
-                          'DevOps Engineer',
-                          'QA Engineer',
-                          'Full Stack Developer',
-                          'System Architect',
-                          'Technical Lead',
-                          'Engineering Manager',
-                          'AI/ML Engineer',
-                          'Cloud Engineer',
-                          'Student',
-                        ],
-                        onClick: (newItem) {
-                          selectedRole = newItem;
-                          setState(() {});
+                      SearchField(
+                        hint: 'Choose your role',
+                        searchInputDecoration: SearchInputDecoration(
+                          searchStyle: TextStyle(
+                              color: Colors.black.withOpacity(0.7),
+                              fontSize: 16.sp
+                          ),// Correct usage
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(18.r),
+                            borderSide: BorderSide(color: Colors.black),
+                          ),
+                          // contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+                        ),
+                        validator: (newValue) {
+                            if (newValue == null || newValue.isEmpty) {
+                              return "Please choose your role";
+                            }
+                            return null;
+                          },
+                        maxSuggestionBoxHeight: 300.h,
+                        onSuggestionTap: (SearchFieldListItem<String> item) {
+                          setState(() {
+                            selectedRole = item;
+                          });
+                          // print(selectedValue!.searchKey);
                         },
-                        onValidator: (newValue) {
-                          if (newValue == null || newValue.isEmpty) {
-                            return "Please choose your role";
-                          }
-                          return null;
-                        },
+                        selectedValue: selectedRole,
+                        suggestions: suggestions.map(
+                              (x) {
+                            return SearchFieldListItem<String>(
+                              x,
+                              item: x,
+                              child: searchChild(x,
+                                  isSelected: selectedRole?.searchKey == x),
+                            );
+                          },
+                        ).toList(),
+                        suggestionState: Suggestion.expand,
                       ),
                       SizedBox(height: 16.h),
                       buildDropDownMenu(
@@ -151,11 +173,7 @@ class _ContinueSignupState extends State<ContinueSignup> {
                               formKey.currentState!.reset();
                               setState(() {
                                 selectedGender = null;
-                                selectedRole = SearchFieldListItem(
-                                  '',
-                                  item: '',
-                                );
-                                searchController.clear();
+                                selectedRole = null;
                                 selectedDegree = null;
                               });
                             },
@@ -167,7 +185,7 @@ class _ContinueSignupState extends State<ContinueSignup> {
                             onPress: () {
                               if (formKey.currentState!.validate()) {
                                 print(selectedGender);
-                                print(selectedRole.item);
+                                print(selectedRole!.searchKey);
                                 print(selectedDegree);
                                 Navigator.pushNamed(context, RoutesManager.login, arguments: {'fromSignup': true});
                               }
@@ -207,60 +225,27 @@ class _ContinueSignupState extends State<ContinueSignup> {
       isExpanded: true,
       validator: onValidator,
       items:
-          dropDownList.map((item) {
-            return DropdownMenuItem(
-              value: item,
-              child: Text(item, style: Theme.of(context).textTheme.bodySmall),
-            );
-          }).toList(),
+      dropDownList.map((item) {
+        return DropdownMenuItem(
+          value: item,
+          child: Text(item, style: Theme
+              .of(context)
+              .textTheme
+              .bodySmall),
+        );
+      }).toList(),
       value: value,
       onChanged: onChange,
-      hint: Text(hintText, style: Theme.of(context).textTheme.bodySmall),
+      hint: Text(hintText, style: Theme
+          .of(context)
+          .textTheme
+          .bodySmall),
       decoration: InputDecoration(
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(18.r),
           borderSide: BorderSide(color: ColorsManager.black),
         ),
       ),
-    );
-  }
-
-  Widget buildSearchDropDownMenu({
-    required List<String> dropDownList,
-    required String hintText,
-    required Function(SearchFieldListItem<String>)? onClick,
-    required String? Function(String?)? onValidator,
-  }) {
-    return SearchField(
-      controller: searchController,
-      hint: hintText,
-      validator: onValidator,
-      searchInputDecoration: SearchInputDecoration(
-        hintStyle: Theme.of(context).textTheme.bodySmall,
-      ),
-      suggestionStyle: Theme.of(context).textTheme.bodySmall,
-      onSuggestionTap: (item) {
-        setState(() {
-          selectedRole = item;
-          searchController.text = item.searchKey;
-        });
-        onClick?.call(item);
-      },
-      suggestions: dropDownList.map((item) {
-        return SearchFieldListItem(
-          item,
-          item: item,
-          child: Text(
-            item,
-            style: Theme.of(context).textTheme.bodySmall?.copyWith(
-              // Highlight selected item
-              color: selectedRole.item == item
-                  ? Colors.blue
-                  : Theme.of(context).textTheme.bodySmall?.color,
-            ),
-          ),
-        );
-      }).toList(),
     );
   }
 }

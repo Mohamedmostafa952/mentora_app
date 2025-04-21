@@ -6,12 +6,15 @@ import 'package:mentora_app/core/colors_manager.dart';
 class ThemeManager {
   static final ThemeData themeData = ThemeData(
     scaffoldBackgroundColor: ColorsManager.white,
-    appBarTheme: AppBarTheme(
-      backgroundColor: Colors.white,
-    ),
+    appBarTheme: AppBarTheme(backgroundColor: Colors.white),
     textTheme: TextTheme(
       bodyMedium: GoogleFonts.itim(
         fontSize: 20.sp,
+        fontWeight: FontWeight.normal,
+        color: ColorsManager.black,
+      ),
+      bodyLarge: GoogleFonts.itim(
+        fontSize: 28.sp,
         fontWeight: FontWeight.normal,
         color: ColorsManager.black,
       ),
@@ -26,10 +29,10 @@ class ThemeManager {
         color: ColorsManager.blue,
       ),
       bodySmall: GoogleFonts.itim(
-        fontSize: 16,
+        fontSize: 16.sp,
         color: ColorsManager.black.withOpacity(0.7),
-        fontWeight: FontWeight.normal
-      )
+        fontWeight: FontWeight.normal,
+      ),
     ),
     inputDecorationTheme: InputDecorationTheme(
       hintStyle: GoogleFonts.itim(
@@ -58,21 +61,17 @@ class ThemeManager {
       ),
     ),
     textButtonTheme: TextButtonThemeData(
-      style: TextButton.styleFrom(
-        foregroundColor: ColorsManager.blue,
-      )
+      style: TextButton.styleFrom(foregroundColor: ColorsManager.blue),
     ),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
         foregroundColor: ColorsManager.white,
         backgroundColor: ColorsManager.blue,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(24.r)
+          borderRadius: BorderRadius.circular(24.r),
         ),
-        textStyle: GoogleFonts.itim(
-          fontSize: 20.sp,
-        )
-      )
+        textStyle: GoogleFonts.itim(fontSize: 20.sp),
+      ),
     ),
   );
 }
