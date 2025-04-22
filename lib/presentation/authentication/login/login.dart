@@ -4,7 +4,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:mentora_app/core/assets_manager.dart';
 import 'package:mentora_app/core/colors_manager.dart';
 import 'package:mentora_app/core/routes_manager.dart';
-import 'package:mentora_app/core/widgets/arrow_back_icon.dart';
 import 'package:mentora_app/core/widgets/custom_elevated_button.dart';
 import 'package:mentora_app/core/widgets/custom_text_button.dart';
 import 'package:mentora_app/presentation/authentication/widgets/custom_row.dart';
@@ -45,12 +44,6 @@ class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
     return fromSignup?Scaffold(
-      appBar: AppBar(
-        leading: ArrowBackIcon(onPress: (){
-          Navigator.pop(context);
-        }),
-        toolbarHeight: 65.h,
-      ),
       body: SafeArea(
         child: Form(
           key: formKey,
@@ -110,7 +103,7 @@ class _LoginState extends State<Login> {
                           if (formKey.currentState!.validate()) {
                             print(email);
                             print(password);
-                            Navigator.pushNamed(context, RoutesManager.onboarding);
+                            Navigator.pushReplacementNamed(context, RoutesManager.onboarding);
                           }
                         },
                       ),
@@ -188,7 +181,7 @@ class _LoginState extends State<Login> {
                           if (formKey.currentState!.validate()) {
                             print(email);
                             print(password);
-                            // fromSignup? onboarding : homePage
+                            Navigator.pushReplacementNamed(context, RoutesManager.home);
                           }
                         },
                       ),
@@ -222,15 +215,15 @@ class _LoginState extends State<Login> {
                         children: [
                           IconButton(
                             onPressed: () {},
-                            icon: SvgPicture.asset("assets/icons/facebook.svg"),
+                            icon: SvgPicture.asset(IconsAssets.facebook),
                           ),
                           IconButton(
                             onPressed: () {},
-                            icon: SvgPicture.asset("assets/icons/google.svg"),
+                            icon: SvgPicture.asset(IconsAssets.google),
                           ),
                           IconButton(
                             onPressed: () {},
-                            icon: SvgPicture.asset("assets/icons/apple.svg"),
+                            icon: SvgPicture.asset(IconsAssets.apple),
                           ),
                         ],
                       ),

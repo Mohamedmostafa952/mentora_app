@@ -5,16 +5,10 @@ import 'package:mentora_app/core/assets_manager.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mentora_app/core/colors_manager.dart';
+import 'package:mentora_app/core/routes_manager.dart';
 
 class Onboarding extends StatelessWidget {
   const Onboarding({super.key});
-
-  // void _onIntroEnd(context) {
-  //   Navigator.of(context).pushReplacement(
-  //     MaterialPageRoute(builder: (_) => const HomePage()),
-  //   );
-  // }
-
   Widget _buildAnimation(String animationPath) {
     return Lottie.asset(animationPath);
   }
@@ -33,11 +27,9 @@ class Onboarding extends StatelessWidget {
       bodyTextStyle: bodyStyle,
       imageFlex: 2,
       imagePadding:  REdgeInsets.only(top: 210, left: 16, right: 16),
-      // titlePadding: EdgeInsets.only(top: 40),
     );
 
     return IntroductionScreen(
-      // globalBackgroundColor: ColorsManager.black,
       allowImplicitScrolling: true,
       infiniteAutoScroll: false,
       globalHeader: Row(
@@ -119,7 +111,7 @@ class Onboarding extends StatelessWidget {
         ),
       ),
       onDone: () {
-        // Navigator.pushReplacementNamed(context, AppRoutes.splash);
+        Navigator.pushReplacementNamed(context, RoutesManager.quizzes);
       },
       curve: Curves.fastLinearToSlowEaseIn,
       controlsMargin: const EdgeInsets.all(16),
