@@ -5,6 +5,9 @@ import 'package:mentora_app/presentation/authentication/signup/continue_signup.d
 import 'package:mentora_app/presentation/authentication/signup/signup.dart';
 import 'package:mentora_app/presentation/home.dart';
 import 'package:mentora_app/presentation/onBoarding/onboarding.dart';
+import 'package:mentora_app/presentation/questions/questions.dart';
+import 'package:mentora_app/presentation/quizDetails/quiz_details.dart';
+import 'package:mentora_app/presentation/results/result.dart';
 
 class RoutesManager{
   static const String login = "/login";
@@ -12,6 +15,9 @@ class RoutesManager{
   static const String continueSignup = "/continueSignup";
   static const String onboarding = "/onboarding";
   static const String quizzes = "/quizzes";
+  static const String quizDetails = "/quizDetails";
+  static const String questions = "/questions";
+  static const String result = "/result";
   static const String home = "/home";
 
   static Map<String,WidgetBuilder> routes ={
@@ -20,6 +26,9 @@ class RoutesManager{
     continueSignup : (_)=> ContinueSignup(),
     onboarding: (_) => Onboarding(),
     quizzes: (_) => Quizzes(),
+    quizDetails: (_) => QuizDetails(),
+    questions: (_)=> Questions(),
+    result: (_) => Result(),
     home: (_) => Home(),
   };
 }

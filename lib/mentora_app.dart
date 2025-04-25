@@ -9,12 +9,12 @@ class MentoraApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
-      designSize: Size(402, 874),
+      designSize: Size(MediaQuery.of(context).size.width, MediaQuery.of(context).size.height),
       minTextAdapt: true,
       builder: (_,child) => MaterialApp(
         debugShowCheckedModeBanner: false,
         routes: RoutesManager.routes,
-        initialRoute: RoutesManager.quizzes,
+        initialRoute: RoutesManager.login,
         theme: ThemeManager.themeData,
       ),
     );
