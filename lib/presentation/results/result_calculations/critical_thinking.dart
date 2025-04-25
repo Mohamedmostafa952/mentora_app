@@ -1,0 +1,25 @@
+import 'package:mentora_app/data/DM/question_dm.dart';
+
+class CriticalThinking{
+  final List<QuestionDM> questions;
+  final List<String> userAnswers;
+
+  CriticalThinking({required this.questions, required this.userAnswers});
+
+  double calculateScores(){
+    int correctAnswerCounter = 0;
+    List<String> correctAnswers() {
+      return questions
+          .map((question) => question.correctAnswer)
+          .toList();
+    }
+    for(int i=0; i < userAnswers.length; i++){
+      if(userAnswers[i] == correctAnswers()[i]){
+        correctAnswerCounter++;
+      }
+    }
+    double result = correctAnswerCounter/ userAnswers.length * 100;
+
+    return result;
+  }
+}
