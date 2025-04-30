@@ -6,7 +6,7 @@ class CriticalThinking{
 
   CriticalThinking({required this.questions, required this.userAnswers});
 
-  double calculateScores(){
+  int calculateScores(){
     int correctAnswerCounter = 0;
     List<String> correctAnswers() {
       return questions
@@ -18,8 +18,6 @@ class CriticalThinking{
         correctAnswerCounter++;
       }
     }
-    double result = correctAnswerCounter/ userAnswers.length * 100;
-
-    return result;
+    return correctAnswerCounter;
   }
 }

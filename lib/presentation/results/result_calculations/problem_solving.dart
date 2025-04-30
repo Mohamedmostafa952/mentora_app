@@ -6,7 +6,7 @@ class ProblemSolving{
 
   ProblemSolving({required this.questions, required this.userAnswers});
 
-  String calculateScores(){
+  int calculateScores(){
     int correctAnswerCounter = 0;
     List<String> correctAnswers() {
       return questions
@@ -18,8 +18,6 @@ class ProblemSolving{
         correctAnswerCounter++;
       }
     }
-    double result = correctAnswerCounter/ userAnswers.length * 100;
-
-    return result.toStringAsFixed(3);
+    return correctAnswerCounter;
   }
 }

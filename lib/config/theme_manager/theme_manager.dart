@@ -33,6 +33,11 @@ class ThemeManager {
         color: ColorsManager.black.withOpacity(0.7),
         fontWeight: FontWeight.normal,
       ),
+      labelLarge: GoogleFonts.itim(
+        fontSize: 30,
+        fontWeight: FontWeight.w500,
+        color: ColorsManager.white
+      )
     ),
     inputDecorationTheme: InputDecorationTheme(
       hintStyle: GoogleFonts.itim(

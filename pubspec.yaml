@@ -42,6 +42,11 @@ dependencies:
   searchfield: ^1.2.7
   introduction_screen: ^3.1.17
   lottie: ^3.3.1
+  fl_chart: ^0.71.0
+  animations: ^2.0.11
+  file_picker: ^10.1.2
+  font_awesome_flutter: ^10.8.0
+  image_picker: ^1.1.2
 
 dev_dependencies:
   flutter_test:

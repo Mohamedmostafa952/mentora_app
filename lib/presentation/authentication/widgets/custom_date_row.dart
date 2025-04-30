@@ -32,11 +32,9 @@ class CustomDateRow extends StatelessWidget {
     if (year.isEmpty) return false;
 
     final yearInt = int.tryParse(year);
-    if (yearInt == null) return false; // Not a number
+    if (yearInt == null) return false;
 
-    final currentYear = DateTime.now().year;
-
-    // Example: Birth year (1900–current year)
-    return yearInt >= 1900 && yearInt <= currentYear;
+    return yearInt >= 1900 && yearInt <= 2100;
   }
+
 }

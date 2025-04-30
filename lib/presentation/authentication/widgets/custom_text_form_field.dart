@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mentora_app/core/colors_manager.dart';
 
@@ -18,7 +19,7 @@ class CustomTextFormField extends StatelessWidget {
       validator: onValidator,
       cursorColor: ColorsManager.black.withOpacity(0.7),
       style: GoogleFonts.itim(
-        fontSize: 16,
+        fontSize: 16.sp,
         color: ColorsManager.black.withOpacity(0.7),
       ),
       decoration: InputDecoration(hintText: text,

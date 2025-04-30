@@ -1,13 +1,12 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mentora_app/core/assets_manager.dart';
-import 'package:mentora_app/core/colors_manager.dart';
 import 'package:mentora_app/core/routes_manager.dart';
 import 'package:mentora_app/core/widgets/arrow_back_icon.dart';
 import 'package:mentora_app/core/widgets/custom_elevated_button.dart';
 import 'package:mentora_app/core/widgets/custom_text_button.dart';
 import 'package:mentora_app/presentation/authentication/widgets/custom_date_row.dart';
+import 'package:mentora_app/presentation/authentication/widgets/custom_drop_down_menu.dart';
 import 'package:searchfield/searchfield.dart';
 
 import '../widgets/custom_text_form_field.dart';
@@ -47,9 +46,13 @@ class _ContinueSignupState extends State<ContinueSignup> {
   Widget build(BuildContext context) {
     Widget searchChild(x, {bool isSelected = false}) => Padding(
       padding: const EdgeInsets.symmetric(horizontal: 12),
-      child: Text(x,
-          style: TextStyle(
-              fontSize: 18.sp, color: isSelected ? Colors.blue : null)),
+      child: Text(
+        x,
+        style: TextStyle(
+          fontSize: 18.sp,
+          color: isSelected ? Colors.blue : null,
+        ),
+      ),
     );
     return Scaffold(
       appBar: AppBar(
@@ -58,6 +61,7 @@ class _ContinueSignupState extends State<ContinueSignup> {
             Navigator.pop(context);
           },
         ),
+        leadingWidth: 75.w,
         toolbarHeight: 65.h,
       ),
       body: Form(
@@ -73,7 +77,7 @@ class _ContinueSignupState extends State<ContinueSignup> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
-                      buildDropDownMenu(
+                      CustomDropDownMenu(
                         onValidator: (newValue) {
                           if (newValue == null || newValue.isEmpty) {
                             return "Please select your gender";
@@ -93,9 +97,9 @@ class _ContinueSignupState extends State<ContinueSignup> {
                         hint: 'Choose your role',
                         searchInputDecoration: SearchInputDecoration(
                           searchStyle: TextStyle(
-                              color: Colors.black.withOpacity(0.7),
-                              fontSize: 16.sp
-                          ),// Correct usage
+                            color: Colors.black.withOpacity(0.7),
+                            fontSize: 16.sp,
+                          ), // Correct usage
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(18.r),
                             borderSide: BorderSide(color: Colors.black),
@@ -103,11 +107,11 @@ class _ContinueSignupState extends State<ContinueSignup> {
                           // contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 14),
                         ),
                         validator: (newValue) {
-                            if (newValue == null || newValue.isEmpty) {
-                              return "Please choose your role";
-                            }
-                            return null;
-                          },
+                          if (newValue == null || newValue.isEmpty) {
+                            return "Please choose your role";
+                          }
+                          return null;
+                        },
                         maxSuggestionBoxHeight: 300.h,
                         onSuggestionTap: (SearchFieldListItem<String> item) {
                           setState(() {
@@ -116,20 +120,21 @@ class _ContinueSignupState extends State<ContinueSignup> {
                           // print(selectedValue!.searchKey);
                         },
                         selectedValue: selectedRole,
-                        suggestions: suggestions.map(
-                              (x) {
-                            return SearchFieldListItem<String>(
-                              x,
-                              item: x,
-                              child: searchChild(x,
-                                  isSelected: selectedRole?.searchKey == x),
-                            );
-                          },
-                        ).toList(),
+                        suggestions:
+                            suggestions.map((x) {
+                              return SearchFieldListItem<String>(
+                                x,
+                                item: x,
+                                child: searchChild(
+                                  x,
+                                  isSelected: selectedRole?.searchKey == x,
+                                ),
+                              );
+                            }).toList(),
                         suggestionState: Suggestion.expand,
                       ),
                       SizedBox(height: 16.h),
-                      buildDropDownMenu(
+                      CustomDropDownMenu(
                         onValidator: (newValue) {
                           if (newValue == null || newValue.isEmpty) {
                             return "Please choose your degree";
@@ -163,7 +168,7 @@ class _ContinueSignupState extends State<ContinueSignup> {
                       CustomDateRow(text: "Start date"),
                       SizedBox(height: 16.h),
                       CustomDateRow(text: "Expected / End date"),
-                      SizedBox(height: 16.h),
+                      SizedBox(height: 40.h),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -187,7 +192,11 @@ class _ContinueSignupState extends State<ContinueSignup> {
                                 print(selectedGender);
                                 print(selectedRole!.searchKey);
                                 print(selectedDegree);
-                                Navigator.pushReplacementNamed(context, RoutesManager.login, arguments: {'fromSignup': true});
+                                Navigator.pushReplacementNamed(
+                                  context,
+                                  RoutesManager.login,
+                                  arguments: {'fromSignup': true},
+                                );
                               }
                             },
                           ),
@@ -209,41 +218,6 @@ class _ContinueSignupState extends State<ContinueSignup> {
               ),
             ),
           ],
-        ),
-      ),
-    );
-  }
-
-  Widget buildDropDownMenu({
-    required List<String> dropDownList,
-    required String hintText,
-    required void Function(String?)? onChange,
-    required String? value,
-    required String? Function(String?)? onValidator,
-  }) {
-    return DropdownButtonFormField(
-      isExpanded: true,
-      validator: onValidator,
-      items:
-      dropDownList.map((item) {
-        return DropdownMenuItem(
-          value: item,
-          child: Text(item, style: Theme
-              .of(context)
-              .textTheme
-              .bodySmall),
-        );
-      }).toList(),
-      value: value,
-      onChanged: onChange,
-      hint: Text(hintText, style: Theme
-          .of(context)
-          .textTheme
-          .bodySmall),
-      decoration: InputDecoration(
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(18.r),
-          borderSide: BorderSide(color: ColorsManager.black),
         ),
       ),
     );

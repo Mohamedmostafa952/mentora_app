@@ -134,108 +134,110 @@ class _LoginState extends State<Login> {
                 flex: 4,
                 child: Padding(
                   padding: REdgeInsets.symmetric(horizontal: 24),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      CustomTextFormField(
-                        text: "Enter Your Email",
-                        onValidator: (newValue) {
-                          if (newValue == null || newValue.isEmpty) {
-                            return "Please enter your email";
-                          } else if (!RegExp(emailRegex).hasMatch(newValue)) {
-                            return "Invalid Email";
-                          }
-                          email = newValue;
-                          return null;
-                        },
-                      ),
-                      SizedBox(height: 28.h),
-                      CustomTextFormField(
-                        text: "Enter Your Password",
-                        suffixIcon:
-                            isObscure ? Icons.visibility_off : Icons.visibility,
-                        onPress: onPasswordVisibility,
-                        isObscure: isObscure,
-                        onValidator: (newValue) {
-                          if (newValue == null || newValue.isEmpty) {
-                            return "Please enter your password";
-                          } else if (!RegExp(
-                            passwordRegex,
-                          ).hasMatch(newValue)) {
-                            return "Invalid Password";
-                          }
-                          password = newValue;
-                          return null;
-                        },
-                      ),
-                      Align(
-                        alignment: Alignment.centerRight,
-                        child: CustomTextButton(
-                          text: "Forget Password",
-                          onPress: () {},
+                  child: SingleChildScrollView(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        CustomTextFormField(
+                          text: "Enter Your Email",
+                          onValidator: (newValue) {
+                            if (newValue == null || newValue.isEmpty) {
+                              return "Please enter your email";
+                            } else if (!RegExp(emailRegex).hasMatch(newValue)) {
+                              return "Invalid Email";
+                            }
+                            email = newValue;
+                            return null;
+                          },
                         ),
-                      ),
-                      CustomElevatedButton(
-                        text: "Login",
-                        onPress: () {
-                          if (formKey.currentState!.validate()) {
-                            print(email);
-                            print(password);
-                            Navigator.pushReplacementNamed(context, RoutesManager.home);
-                          }
-                        },
-                      ),
-                      SizedBox(height: 28.h),
-
-                      Row(
-                        children: [
-                          Expanded(
-                            child: Container(
-                              height: 1,
-                              color: ColorsManager.black,
+                        SizedBox(height: 28.h),
+                        CustomTextFormField(
+                          text: "Enter Your Password",
+                          suffixIcon:
+                              isObscure ? Icons.visibility_off : Icons.visibility,
+                          onPress: onPasswordVisibility,
+                          isObscure: isObscure,
+                          onValidator: (newValue) {
+                            if (newValue == null || newValue.isEmpty) {
+                              return "Please enter your password";
+                            } else if (!RegExp(
+                              passwordRegex,
+                            ).hasMatch(newValue)) {
+                              return "Invalid Password";
+                            }
+                            password = newValue;
+                            return null;
+                          },
+                        ),
+                        Align(
+                          alignment: Alignment.centerRight,
+                          child: CustomTextButton(
+                            text: "Forget Password",
+                            onPress: () {},
+                          ),
+                        ),
+                        CustomElevatedButton(
+                          text: "Login",
+                          onPress: () {
+                            if (formKey.currentState!.validate()) {
+                              print(email);
+                              print(password);
+                              Navigator.pushReplacementNamed(context, RoutesManager.home);
+                            }
+                          },
+                        ),
+                        SizedBox(height: 28.h),
+                    
+                        Row(
+                          children: [
+                            Expanded(
+                              child: Container(
+                                height: 1,
+                                color: ColorsManager.black,
+                              ),
                             ),
-                          ),
-                          SizedBox(width: 12.w),
-                          Text(
-                            "or with",
-                            style: Theme.of(context).textTheme.bodyMedium,
-                          ),
-                          SizedBox(width: 12.w),
-                          Expanded(
-                            child: Container(
-                              height: 1,
-                              color: ColorsManager.black,
+                            SizedBox(width: 12.w),
+                            Text(
+                              "or with",
+                              style: Theme.of(context).textTheme.bodyMedium,
                             ),
-                          ),
-                        ],
-                      ),
-                      SizedBox(height: 28.h),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          IconButton(
-                            onPressed: () {},
-                            icon: SvgPicture.asset(IconsAssets.facebook),
-                          ),
-                          IconButton(
-                            onPressed: () {},
-                            icon: SvgPicture.asset(IconsAssets.google),
-                          ),
-                          IconButton(
-                            onPressed: () {},
-                            icon: SvgPicture.asset(IconsAssets.apple),
-                          ),
-                        ],
-                      ),
-                      SizedBox(height: 28.h),
-                      CustomRow(
-                        text: "Don’t have an account?",
-                        buttonText: "Signup",
-                        onPress: () {
-                          Navigator.pushNamed(context, RoutesManager.signup);
-                        },
-                      ),
-                    ],
+                            SizedBox(width: 12.w),
+                            Expanded(
+                              child: Container(
+                                height: 1,
+                                color: ColorsManager.black,
+                              ),
+                            ),
+                          ],
+                        ),
+                        SizedBox(height: 28.h),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            IconButton(
+                              onPressed: () {},
+                              icon: SvgPicture.asset(IconsAssets.facebook),
+                            ),
+                            IconButton(
+                              onPressed: () {},
+                              icon: SvgPicture.asset(IconsAssets.google),
+                            ),
+                            IconButton(
+                              onPressed: () {},
+                              icon: SvgPicture.asset(IconsAssets.apple),
+                            ),
+                          ],
+                        ),
+                        SizedBox(height: 28.h),
+                        CustomRow(
+                          text: "Don’t have an account?",
+                          buttonText: "Signup",
+                          onPress: () {
+                            Navigator.pushNamed(context, RoutesManager.signup);
+                          },
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),

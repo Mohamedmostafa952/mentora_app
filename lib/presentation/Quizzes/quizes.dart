@@ -24,6 +24,7 @@ class _QuizzesState extends State<Quizzes> {
   List<QuizDM> questions = ConstantsManager.questionsDetails;
   late FinishedQuiz args;
 
+
   @override
   void didChangeDependencies() {
     // TODO: implement didChangeDependencies
@@ -43,6 +44,32 @@ class _QuizzesState extends State<Quizzes> {
 
   @override
   Widget build(BuildContext context) {
+
+    List<Widget> tabs = args.isBigFiveFinished
+        ? [
+      Text(
+        "Skills",
+        style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+          color: ColorsManager.blue,
+        ),
+      ),
+    ]
+        : [
+      Text(
+        "Personality",
+        style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+          color: ColorsManager.blue,
+        ),
+      ),
+      Text(
+        "Skills",
+        style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+          color: ColorsManager.blue,
+        ),
+      ),
+    ];
+
+
     return Scaffold(
       body: Column(
         children: [
@@ -79,7 +106,7 @@ class _QuizzesState extends State<Quizzes> {
           SizedBox(height: 24.h),
           Expanded(
             child: DefaultTabController(
-              length: 2,
+              length: args.isBigFiveFinished? 1: 2,
               child: Column(
                 children: [
                   TabBar(
@@ -89,97 +116,12 @@ class _QuizzesState extends State<Quizzes> {
                       selectedIndex = index;
                       setState(() {});
                     },
-
-                    tabs: [
-                      Text(
-                        "Personality",
-                        style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                          color: ColorsManager.blue,
-                        ),
-                      ),
-                      Text(
-                        "Skills",
-                        style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                          color: ColorsManager.blue,
-                        ),
-                      ),
-                    ],
+                    tabs: tabs,
                   ),
                   Expanded(
                     child: TabBarView(
-                      children: [
-                        args.isBigFiveFinished? Container():Padding(
-                          padding: REdgeInsets.only(
-                            left: 26,
-                            right: 26,
-                          ),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.stretch,
-                            children: [
-                              args.isRisacFinished
-                                  ? Container()
-                                  : QuizContainer(
-                                    imagePath: questions[0].imagePath,
-                                    title: questions[0].quizName,
-                                    questionsNumber:
-                                        "${questions[0].questionNumber}",
-                                    time: "${questions[0].quizTime}",
-                                    rating: "${questions[0].rating}",
-                                    isSelected: risacSelected,
-                                    onTap: () {
-                                      risacSelected = !risacSelected;
-                                      bigFiveSelected = false;
-                                      criticalThinkingSelected = false;
-                                      problemSolvingSelected = false;
-
-                                      setState(() {});
-                                    },
-                                  ),
-                              QuizContainer(
-                                    imagePath: questions[1].imagePath,
-                                    title: questions[1].quizName,
-                                    questionsNumber:
-                                        "${questions[1].questionNumber}",
-                                    time: "${questions[1].quizTime}",
-                                    rating: "${questions[1].rating}",
-                                    isSelected: bigFiveSelected,
-                                    onTap: () {
-                                      bigFiveSelected = !bigFiveSelected;
-                                      risacSelected = false;
-                                      criticalThinkingSelected = false;
-                                      problemSolvingSelected = false;
-
-                                      setState(() {});
-                                    },
-                                  ),
-                              Spacer(),
-                              risacSelected
-                                  ? CustomElevatedButton(
-                                    text: "Start Quiz",
-                                    onPress: () {
-                                      Navigator.pushNamed(
-                                        context,
-                                        RoutesManager.quizDetails,
-                                        arguments: questions[0],
-                                      );
-                                    },
-                                  )
-                                  : Container(),
-                              bigFiveSelected
-                                  ? CustomElevatedButton(
-                                    text: "Start Quiz",
-                                    onPress: () {
-                                      Navigator.pushNamed(
-                                        context,
-                                        RoutesManager.quizDetails,
-                                        arguments: questions[1],
-                                      );
-                                    },
-                                  )
-                                  : Container(),
-                            ],
-                          ),
-                        ),
+                      children: args.isBigFiveFinished
+                          ? [
                         Padding(
                           padding: REdgeInsets.symmetric(horizontal: 26),
                           child: Column(
@@ -188,66 +130,196 @@ class _QuizzesState extends State<Quizzes> {
                               args.isCriticalThinkingFinished
                                   ? Container()
                                   : QuizContainer(
-                                    imagePath: questions[2].imagePath,
-                                    title: questions[2].quizName,
-                                    questionsNumber:
-                                        "${questions[2].questionNumber}",
-                                    time: "${questions[2].quizTime}",
-                                    rating: "${questions[2].rating}",
-                                    isSelected: criticalThinkingSelected,
-                                    onTap: () {
-                                      criticalThinkingSelected =
-                                          !criticalThinkingSelected;
-                                      problemSolvingSelected = false;
-                                      bigFiveSelected = false;
-                                      risacSelected = false;
-
-                                      setState(() {});
-                                    },
-                                  ),
+                                imagePath: questions[2].imagePath,
+                                title: questions[2].quizName,
+                                questionsNumber: "${questions[2].questionNumber}",
+                                time: "${questions[2].quizTime}",
+                                rating: "${questions[2].rating}",
+                                isSelected: criticalThinkingSelected,
+                                onTap: () {
+                                  criticalThinkingSelected = !criticalThinkingSelected;
+                                  problemSolvingSelected = false;
+                                  bigFiveSelected = false;
+                                  risacSelected = false;
+                                  setState(() {});
+                                },
+                              ),
                               args.isProblemSolvingFinished
                                   ? Container()
                                   : QuizContainer(
-                                    imagePath: questions[3].imagePath,
-                                    title: questions[3].quizName,
-                                    questionsNumber:
-                                        "${questions[3].questionNumber}",
-                                    time: "${questions[3].quizTime}",
-                                    rating: "${questions[3].rating}",
-                                    isSelected: problemSolvingSelected,
-                                    onTap: () {
-                                      problemSolvingSelected =
-                                          !problemSolvingSelected;
-                                      criticalThinkingSelected = false;
-                                      bigFiveSelected = false;
-                                      risacSelected = false;
-                                      setState(() {});
-                                    },
-                                  ),
+                                imagePath: questions[3].imagePath,
+                                title: questions[3].quizName,
+                                questionsNumber: "${questions[3].questionNumber}",
+                                time: "${questions[3].quizTime}",
+                                rating: "${questions[3].rating}",
+                                isSelected: problemSolvingSelected,
+                                onTap: () {
+                                  problemSolvingSelected = !problemSolvingSelected;
+                                  criticalThinkingSelected = false;
+                                  bigFiveSelected = false;
+                                  risacSelected = false;
+                                  setState(() {});
+                                },
+                              ),
                               Spacer(),
                               criticalThinkingSelected
                                   ? CustomElevatedButton(
-                                    text: "Start Quiz",
-                                    onPress: () {
-                                      Navigator.pushNamed(
-                                        context,
-                                        RoutesManager.quizDetails,
-                                        arguments: questions[2],
-                                      );
-                                    },
-                                  )
+                                text: "Start Quiz",
+                                onPress: () {
+                                  Navigator.pushNamed(
+                                    context,
+                                    RoutesManager.quizDetails,
+                                    arguments: questions[2],
+                                  );
+                                },
+                              )
                                   : Container(),
                               problemSolvingSelected
                                   ? CustomElevatedButton(
-                                    text: "Start Quiz",
-                                    onPress: () {
-                                      Navigator.pushNamed(
-                                        context,
-                                        RoutesManager.quizDetails,
-                                        arguments: questions[3],
-                                      );
-                                    },
-                                  )
+                                text: "Start Quiz",
+                                onPress: () {
+                                  Navigator.pushNamed(
+                                    context,
+                                    RoutesManager.quizDetails,
+                                    arguments: questions[3],
+                                  );
+                                },
+                              )
+                                  : Container(),
+                            ],
+                          ),
+                        ),
+                      ]
+                          : [
+                        Padding(
+                          padding: REdgeInsets.only(left: 26, right: 26),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.stretch,
+                            children: [
+                              args.isRisacFinished
+                                  ? Container()
+                                  : QuizContainer(
+                                imagePath: questions[0].imagePath,
+                                title: questions[0].quizName,
+                                questionsNumber: "${questions[0].questionNumber}",
+                                time: "${questions[0].quizTime}",
+                                rating: "${questions[0].rating}",
+                                isSelected: risacSelected,
+                                onTap: () {
+                                  risacSelected = !risacSelected;
+                                  bigFiveSelected = false;
+                                  criticalThinkingSelected = false;
+                                  problemSolvingSelected = false;
+                                  setState(() {});
+                                },
+                              ),
+                              QuizContainer(
+                                imagePath: questions[1].imagePath,
+                                title: questions[1].quizName,
+                                questionsNumber: "${questions[1].questionNumber}",
+                                time: "${questions[1].quizTime}",
+                                rating: "${questions[1].rating}",
+                                isSelected: bigFiveSelected,
+                                onTap: () {
+                                  bigFiveSelected = !bigFiveSelected;
+                                  risacSelected = false;
+                                  criticalThinkingSelected = false;
+                                  problemSolvingSelected = false;
+                                  setState(() {});
+                                },
+                              ),
+                              Spacer(),
+                              risacSelected
+                                  ? CustomElevatedButton(
+                                text: "Start Quiz",
+                                onPress: () {
+                                  Navigator.pushNamed(
+                                    context,
+                                    RoutesManager.quizDetails,
+                                    arguments: questions[0],
+                                  );
+                                },
+                              )
+                                  : Container(),
+                              bigFiveSelected
+                                  ? CustomElevatedButton(
+                                text: "Start Quiz",
+                                onPress: () {
+                                  Navigator.pushNamed(
+                                    context,
+                                    RoutesManager.quizDetails,
+                                    arguments: questions[1],
+                                  );
+                                },
+                              )
+                                  : Container(),
+                            ],
+                          ),
+                        ),
+                        // Skills tab
+                        Padding(
+                          padding: REdgeInsets.symmetric(horizontal: 26),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.stretch,
+                            children: [
+                              args.isCriticalThinkingFinished
+                                  ? Container()
+                                  : QuizContainer(
+                                imagePath: questions[2].imagePath,
+                                title: questions[2].quizName,
+                                questionsNumber: "${questions[2].questionNumber}",
+                                time: "${questions[2].quizTime}",
+                                rating: "${questions[2].rating}",
+                                isSelected: criticalThinkingSelected,
+                                onTap: () {
+                                  criticalThinkingSelected = !criticalThinkingSelected;
+                                  problemSolvingSelected = false;
+                                  bigFiveSelected = false;
+                                  risacSelected = false;
+                                  setState(() {});
+                                },
+                              ),
+                              args.isProblemSolvingFinished
+                                  ? Container()
+                                  : QuizContainer(
+                                imagePath: questions[3].imagePath,
+                                title: questions[3].quizName,
+                                questionsNumber: "${questions[3].questionNumber}",
+                                time: "${questions[3].quizTime}",
+                                rating: "${questions[3].rating}",
+                                isSelected: problemSolvingSelected,
+                                onTap: () {
+                                  problemSolvingSelected = !problemSolvingSelected;
+                                  criticalThinkingSelected = false;
+                                  bigFiveSelected = false;
+                                  risacSelected = false;
+                                  setState(() {});
+                                },
+                              ),
+                              Spacer(),
+                              criticalThinkingSelected
+                                  ? CustomElevatedButton(
+                                text: "Start Quiz",
+                                onPress: () {
+                                  Navigator.pushNamed(
+                                    context,
+                                    RoutesManager.quizDetails,
+                                    arguments: questions[2],
+                                  );
+                                },
+                              )
+                                  : Container(),
+                              problemSolvingSelected
+                                  ? CustomElevatedButton(
+                                text: "Start Quiz",
+                                onPress: () {
+                                  Navigator.pushNamed(
+                                    context,
+                                    RoutesManager.quizDetails,
+                                    arguments: questions[3],
+                                  );
+                                },
+                              )
                                   : Container(),
                             ],
                           ),
@@ -255,6 +327,7 @@ class _QuizzesState extends State<Quizzes> {
                       ],
                     ),
                   ),
+
                 ],
               ),
             ),
