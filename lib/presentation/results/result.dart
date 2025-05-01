@@ -346,7 +346,7 @@ class _ResultState extends State<Result> {
                     ),
                   );
                 } else {
-                  Navigator.pushReplacementNamed(context, RoutesManager.home);
+                  Navigator.pushReplacementNamed(context, RoutesManager.mainLayout);
                 }
               },
             ),

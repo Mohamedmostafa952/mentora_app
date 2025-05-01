@@ -14,7 +14,7 @@ class MentoraApp extends StatelessWidget {
       builder: (_,child) => MaterialApp(
         debugShowCheckedModeBanner: false,
         routes: RoutesManager.routes,
-        initialRoute: RoutesManager.login,
+        initialRoute: RoutesManager.mainLayout,
         theme: ThemeManager.themeData,
       ),
     );

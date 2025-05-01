@@ -3,15 +3,12 @@ import 'package:mentora_app/presentation/Quizzes/quizes.dart';
 import 'package:mentora_app/presentation/authentication/login/login.dart';
 import 'package:mentora_app/presentation/authentication/signup/continue_signup.dart';
 import 'package:mentora_app/presentation/authentication/signup/signup.dart';
-import 'package:mentora_app/presentation/community.dart';
-import 'package:mentora_app/presentation/edit_profile.dart';
-import 'package:mentora_app/presentation/home.dart';
+import 'package:mentora_app/presentation/main_layout/home/chatbot.dart';
+import 'package:mentora_app/presentation/main_layout/main_layout.dart';
 import 'package:mentora_app/presentation/onBoarding/onboarding.dart';
-import 'package:mentora_app/presentation/profile.dart';
 import 'package:mentora_app/presentation/questions/questions.dart';
 import 'package:mentora_app/presentation/quizDetails/quiz_details.dart';
 import 'package:mentora_app/presentation/results/result.dart';
-import 'package:mentora_app/presentation/road_map.dart';
 
 class RoutesManager{
   static const String login = "/login";
@@ -22,11 +19,8 @@ class RoutesManager{
   static const String quizDetails = "/quizDetails";
   static const String questions = "/questions";
   static const String result = "/result";
-  static const String home = "/home";
-  static const String roadMap = "/roadMap";
-  static const String profile = "/profile";
-  static const String community = "/community";
-  static const String editProfile = "/editProfile";
+  static const String mainLayout = "/mainLayout";
+  static const String chatBot = "/chatBot";
 
   static Map<String,WidgetBuilder> routes ={
     login: (_)=> Login(),
@@ -37,10 +31,7 @@ class RoutesManager{
     quizDetails: (_) => QuizDetails(),
     questions: (_)=> Questions(),
     result: (_) => Result(),
-    home: (_) => Home(),
-    roadMap:(_) => RoadMap(),
-    profile: (_) => Profile(),
-    community:(_)=> Community(),
-    editProfile: (_) => EditProfile()
+    mainLayout: (_) => MainLayout(),
+    chatBot: (_)=> ChatBot()
   };
 }

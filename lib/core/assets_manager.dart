@@ -7,7 +7,12 @@ class AssetsManager{
    static const String bigFive = "$base/Bigfive.png";
    static const String criticalThinking = "$base/criticalthinking.png";
    static const String problemSolving = "$base/Problemsolving.png";
+   static const String badges = "$base/Badges.png";
+   static const String coins = "$base/Coins.png";
+   static const String experiencePoints = "$base/Experience.png";
    static const String riasec = "$base/RIASEC.png";
+   static const String awsCourse = "$base/aws.png";
+   static const String cyberSecurityCourse = "$base/cybersecurity.png";
 }
 
 class IconsAssets{
@@ -18,6 +23,14 @@ class IconsAssets{
    static const String questions = "$base/questions.svg";
    static const String timer = "$base/timer.svg";
    static const String star = "$base/star.svg";
+   static const String selectedHome = "$base/selected_home.svg";
+   static const String selectedRoadmap = "$base/selected_roadmap.svg";
+   static const String selectedCommunity = "$base/selected_community.svg";
+   static const String selectedProfile = "$base/selected_profile.svg";
+   static const String unselectedHome = "$base/unselected_home.svg";
+   static const String unselectedRoadmap = "$base/unselected_roadmap.svg";
+   static const String unselectedCommunity = "$base/unselected_community.svg";
+   static const String unselectedProfile = "$base/unselected_profile.svg";
 }
 
 class Animations{

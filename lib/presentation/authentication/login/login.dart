@@ -182,7 +182,7 @@ class _LoginState extends State<Login> {
                             if (formKey.currentState!.validate()) {
                               print(email);
                               print(password);
-                              Navigator.pushReplacementNamed(context, RoutesManager.home);
+                              Navigator.pushReplacementNamed(context, RoutesManager.mainLayout);
                             }
                           },
                         ),
