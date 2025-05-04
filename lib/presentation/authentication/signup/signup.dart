@@ -5,6 +5,7 @@ import 'package:mentora_app/core/routes_manager.dart';
 import 'package:mentora_app/core/widgets/custom_elevated_button.dart';
 import 'package:mentora_app/presentation/authentication/widgets/custom_row.dart';
 import 'package:mentora_app/presentation/authentication/widgets/custom_text_form_field.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class Signup extends StatefulWidget {
   const Signup({super.key});
@@ -37,12 +38,12 @@ class _SignupState extends State<Signup> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Text(
-                "Create an account",
+                AppLocalizations.of(context)!.create_account,
                 textAlign: TextAlign.center,
                 style: Theme.of(context).textTheme.titleMedium,
               ),
               Text(
-                "Start Your Learning Experience",
+                AppLocalizations.of(context)!.start_your_learning_experience,
                 textAlign: TextAlign.center,
                 style: Theme.of(context).textTheme.titleSmall,
               ),
@@ -56,12 +57,12 @@ class _SignupState extends State<Signup> {
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
                         CustomTextFormField(
-                          text: "Enter Your name",
+                          text: AppLocalizations.of(context)!.enter_your_name,
                           onValidator: (newValue) {
                             if (newValue == null || newValue.isEmpty) {
-                              return "Please enter your name";
+                              return AppLocalizations.of(context)!.please_enter_your_name;
                             } else if (!RegExp(nameRegex).hasMatch(newValue)) {
-                              return "letters only";
+                              return AppLocalizations.of(context)!.letters_only;
                             }
                             name = newValue;
                             return null;
@@ -69,12 +70,12 @@ class _SignupState extends State<Signup> {
                         ),
                         SizedBox(height: 16.h),
                         CustomTextFormField(
-                          text: "Enter Your Email",
+                          text: AppLocalizations.of(context)!.enter_your_email,
                           onValidator: (newValue) {
                             if (newValue == null || newValue.isEmpty) {
-                              return "Please enter your email";
+                              return AppLocalizations.of(context)!.please_enter_your_email;
                             } else if (!RegExp(emailRegex).hasMatch(newValue)) {
-                              return "Invalid Email";
+                              return AppLocalizations.of(context)!.please_enter_your_email;
                             }
                             email = newValue;
                             return null;
@@ -82,7 +83,7 @@ class _SignupState extends State<Signup> {
                         ),
                         SizedBox(height: 16.h),
                         CustomTextFormField(
-                          text: "Enter Your Password",
+                          text: AppLocalizations.of(context)!.enter_your_password,
                           isObscure: passwordObscure,
                           suffixIcon:
                               passwordObscure
@@ -91,11 +92,11 @@ class _SignupState extends State<Signup> {
                           onPress: onPasswordPress,
                           onValidator: (newValue) {
                             if (newValue == null || newValue.isEmpty) {
-                              return "Please enter your password";
+                              return AppLocalizations.of(context)!.please_enter_your_password;
                             } else if (!RegExp(
                               passwordRegex,
                             ).hasMatch(newValue)) {
-                              return "Invalid Password";
+                              return AppLocalizations.of(context)!.invalid_password;
                             }
                             password = newValue;
                             return null;
@@ -103,7 +104,7 @@ class _SignupState extends State<Signup> {
                         ),
                         SizedBox(height: 16.h),
                         CustomTextFormField(
-                          text: "Confirm Your Password",
+                          text: AppLocalizations.of(context)!.confirm_your_password,
                           isObscure: rePasswordObscure,
                           suffixIcon:
                               rePasswordObscure
@@ -112,9 +113,9 @@ class _SignupState extends State<Signup> {
                           onPress: onConfirmPassword,
                           onValidator: (newValue) {
                             if (newValue == null || newValue.isEmpty) {
-                              return "Please confirm your password";
+                              return AppLocalizations.of(context)!.please_confirm_your_password;
                             } else if (newValue != password) {
-                              return "Passwords do not match";
+                              return AppLocalizations.of(context)!.passwords_do_not_match;
                             }
                             return null;
                           },
@@ -136,8 +137,8 @@ class _SignupState extends State<Signup> {
                         ),
                         SizedBox(height: 24.h),
                         CustomRow(
-                          text: "Already have an account?",
-                          buttonText: "login",
+                          text: AppLocalizations.of(context)!.already_have_an_account,
+                          buttonText: AppLocalizations.of(context)!.login,
                           onPress: () {
                             Navigator.pushNamed(context, RoutesManager.login,);
                           },

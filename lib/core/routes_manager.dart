@@ -5,6 +5,7 @@ import 'package:mentora_app/presentation/authentication/signup/continue_signup.d
 import 'package:mentora_app/presentation/authentication/signup/signup.dart';
 import 'package:mentora_app/presentation/main_layout/home/chatbot.dart';
 import 'package:mentora_app/presentation/main_layout/main_layout.dart';
+import 'package:mentora_app/presentation/main_layout/profile/edit_profile.dart';
 import 'package:mentora_app/presentation/onBoarding/onboarding.dart';
 import 'package:mentora_app/presentation/questions/questions.dart';
 import 'package:mentora_app/presentation/quizDetails/quiz_details.dart';
@@ -21,6 +22,7 @@ class RoutesManager{
   static const String result = "/result";
   static const String mainLayout = "/mainLayout";
   static const String chatBot = "/chatBot";
+  static const String editProfile = "/editProfile";
 
   static Map<String,WidgetBuilder> routes ={
     login: (_)=> Login(),
@@ -32,6 +34,7 @@ class RoutesManager{
     questions: (_)=> Questions(),
     result: (_) => Result(),
     mainLayout: (_) => MainLayout(),
-    chatBot: (_)=> ChatBot()
+    chatBot: (_)=> ChatBot(),
+    editProfile: (_) => EditProfile(),
   };
 }

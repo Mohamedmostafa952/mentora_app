@@ -24,12 +24,6 @@ class _MainLayoutState extends State<MainLayout> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: tabs[selectedIndex],
-      // floatingActionButton: FloatingActionButton(
-      //   backgroundColor: ColorsManager.blue,
-      //   child: Icon(Icons.chat_bubble, color: ColorsManager.white),
-      //   onPressed: () {},
-      // ),
-
       bottomNavigationBar: BottomNavigationBar(
           onTap: (newIndex){
             selectedIndex = newIndex;
@@ -38,10 +32,6 @@ class _MainLayoutState extends State<MainLayout> {
             });
           },
           currentIndex: selectedIndex,
-          selectedItemColor: ColorsManager.blue,
-          unselectedItemColor: ColorsManager.unselectedIcon,
-          backgroundColor: ColorsManager.white,
-          type: BottomNavigationBarType.fixed,
           items: [
             BottomNavigationBarItem(icon: buildIcon(IconsAssets.selectedHome, selectedIndex == 0), label: "Home"),
             BottomNavigationBarItem(icon: buildIcon(IconsAssets.selectedRoadmap, selectedIndex == 1), label: "Roadmap"),
@@ -60,6 +50,6 @@ class _MainLayoutState extends State<MainLayout> {
         borderRadius: BorderRadius.circular(44.r)
       ),
       child: SvgPicture.asset(iconPath),
-    ): SvgPicture.asset(iconPath, colorFilter:ColorFilter.mode(ColorsManager.unselectedIcon, BlendMode.srcIn),);
+    ): SvgPicture.asset(iconPath, colorFilter:ColorFilter.mode(Theme.of(context).primaryColorDark, BlendMode.srcIn),);
   }
 }

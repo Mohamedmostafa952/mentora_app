@@ -3,9 +3,9 @@ import 'package:introduction_screen/introduction_screen.dart';
 import 'package:lottie/lottie.dart';
 import 'package:mentora_app/core/assets_manager.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:mentora_app/core/colors_manager.dart';
 import 'package:mentora_app/core/routes_manager.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class Onboarding extends StatelessWidget {
   const Onboarding({super.key});
@@ -15,18 +15,13 @@ class Onboarding extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const bodyStyle = TextStyle(fontSize: 19.0, color: ColorsManager.black);
 
     var pageDecoration = PageDecoration(
       imageAlignment: Alignment.center,
-      titleTextStyle: GoogleFonts.itim(
-        fontSize: 28.sp,
-        fontWeight: FontWeight.normal,
-        color: ColorsManager.blue,
-      ),
-      bodyTextStyle: bodyStyle,
+      titleTextStyle: Theme.of(context).textTheme.titleMedium!,
+      bodyTextStyle: Theme.of(context).textTheme.bodyMedium!,
       imageFlex: 2,
-      imagePadding:  REdgeInsets.only(top: 210, left: 16, right: 16),
+      imagePadding:  REdgeInsets.only(top: 150, left: 16, right: 16),
     );
 
     return IntroductionScreen(
@@ -42,45 +37,40 @@ class Onboarding extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SizedBox(height: 18.h,),
-              Text("Hi, ", style: Theme.of(context).textTheme.titleLarge),
-              Text("Welcome to our LXP", style: GoogleFonts.itim(
-                fontSize: 20.sp,
-                color: ColorsManager.black,
-                fontWeight: FontWeight.normal,
-              )),
+              Text(AppLocalizations.of(context)!.hi, style: Theme.of(context).textTheme.bodyLarge),
+              Text(AppLocalizations.of(context)!.welcome_to_our_lxp, style: Theme.of(context).textTheme.bodyMedium),
             ],
           )
         ],
       ),
       pages: [
         PageViewModel(
-          title: "Welcome to Mentora!",
-          body: "Embark on a journey to discover new skills and achieve your goals with ease",
+          title: AppLocalizations.of(context)!.onboarding_title1,
+          body: AppLocalizations.of(context)!.onboarding1,
           image: _buildAnimation(Animations.animation1),
           decoration: pageDecoration,
         ),
         PageViewModel(
-          title: "Learning Tailored to You",
-          body: "Get a customized learning experience designed to match your interests and career goals.",
+          title: AppLocalizations.of(context)!.onboarding_title2,
+          body: AppLocalizations.of(context)!.onboarding2,
           image: _buildAnimation(Animations.animation2),
           decoration: pageDecoration,
         ),
         PageViewModel(
-          title: "Interactive & Engaging",
-          body: "Explore videos, quizzes, and challenges to make learning fun and effective.",
+          title: AppLocalizations.of(context)!.onboarding_title3,
+          body: AppLocalizations.of(context)!.onboarding3,
           image: _buildAnimation(Animations.animation3),
           decoration: pageDecoration,
         ),
         PageViewModel(
-          title: "Join a Thriving Community",
-          body: "Connect with a global community of learners, mentors, and experts.",
+          title: AppLocalizations.of(context)!.onboarding_title4,
+          body: AppLocalizations.of(context)!.onboarding4,
           image: _buildAnimation(Animations.animation4),
           decoration: pageDecoration,
         ),
         PageViewModel(
-          title: "Ready for a Quick Quiz!",
-          body:
-          "Read each statement. If you agree with the statement, fill in the circle. There are no wrong answers!  Let's see what you've got!  Goodluck!",
+          title: AppLocalizations.of(context)!.onboarding_title5,
+          body: AppLocalizations.of(context)!.onboarding5,
           image: _buildAnimation(Animations.animation5),
           decoration: pageDecoration,
         ),
@@ -88,24 +78,26 @@ class Onboarding extends StatelessWidget {
       skipOrBackFlex: 0,
       nextFlex: 0,
       showBackButton: true,
-      //rtl: true, // Display as right-to-left
-      back: const Text(
-        'Back',
+      back: Text(
+        AppLocalizations.of(context)!.back,
         style: TextStyle(
+          fontSize: 24.sp,
           color: ColorsManager.blue,
           fontWeight: FontWeight.w600,
         ),
       ),
-      next: const Text(
-        'Next',
+      next:Text(
+        AppLocalizations.of(context)!.next,
         style: TextStyle(
+          fontSize: 24.sp,
           color: ColorsManager.blue,
           fontWeight: FontWeight.w600,
         ),
       ),
-      done: const Text(
-        'Done',
+      done: Text(
+        AppLocalizations.of(context)!.done,
         style: TextStyle(
+          fontSize: 24.sp,
           color: ColorsManager.blue,
           fontWeight: FontWeight.w600,
         ),

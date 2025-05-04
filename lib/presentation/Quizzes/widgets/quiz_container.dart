@@ -41,7 +41,7 @@ class QuizContainer extends StatelessWidget {
               ),
               width: maxWidth, // Use full available width
               decoration: BoxDecoration(
-                color: ColorsManager.white,
+                color: Theme.of(context).scaffoldBackgroundColor,
                 borderRadius: BorderRadius.circular(24.r),
                 border: Border.all(
                   color: isSelected ? ColorsManager.blue : ColorsManager.grey,

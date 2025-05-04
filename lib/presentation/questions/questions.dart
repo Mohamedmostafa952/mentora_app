@@ -41,7 +41,7 @@ class _QuestionsState extends State<Questions> {
               height: 180.h,
               padding: EdgeInsets.all(16.r),
               decoration: BoxDecoration(
-                color: Colors.white,
+                color: Theme.of(context).scaffoldBackgroundColor,
                 borderRadius: BorderRadius.circular(20.r),
                 boxShadow: [
                   BoxShadow(
@@ -95,10 +95,7 @@ class _QuestionsState extends State<Questions> {
                     child: Text(
                       args.questions[questionsCounter].question,
                       textAlign: TextAlign.center,
-                      style: args.quizDM.index == 2 ||args.quizDM.index == 3?Theme.of(context).textTheme.bodySmall!.copyWith(
-                        fontWeight: FontWeight.bold,
-                        color: ColorsManager.black
-                      ): Theme.of(context).textTheme.bodyMedium,
+                      style: args.quizDM.index == 2 ||args.quizDM.index == 3?Theme.of(context).textTheme.labelSmall: Theme.of(context).textTheme.bodyMedium,
                     ),
                   ),
                   ),

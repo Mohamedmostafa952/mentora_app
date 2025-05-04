@@ -1,12 +1,12 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:mentora_app/core/assets_manager.dart';
 import 'package:mentora_app/core/colors_manager.dart';
 import 'package:mentora_app/core/routes_manager.dart';
 import 'package:mentora_app/presentation/main_layout/home/widgets/course_progress.dart';
 import 'package:mentora_app/presentation/main_layout/home/widgets/gamification_item.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -29,42 +29,43 @@ class _HomeState extends State<Home> {
               children: [
                 Row(
                   children: [
-                    Padding(
-                      padding: REdgeInsets.only(left: 12, top: 18),
-                      child: Image.asset(
-                        AssetsManager.profile,
-                        fit: BoxFit.fill,
+                    Expanded(
+                      child: Padding(
+                        padding: REdgeInsets.only(left: 12, top: 18),
+                        child: Image.asset(
+                          AssetsManager.profile,
+                          fit: BoxFit.fill,
+                        ),
                       ),
                     ),
                     SizedBox(width: 8.w),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        SizedBox(height: 18.h),
-                        Text(
-                          "Hi, ",
-                          style: Theme.of(context).textTheme.titleLarge,
-                        ),
-                        Text(
-                          "Welcome to our LXP",
-                          style: GoogleFonts.itim(
-                            fontSize: 20.sp,
-                            color: ColorsManager.black,
-                            fontWeight: FontWeight.normal,
+                    Expanded(
+                      flex: 3,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          SizedBox(height: 18.h),
+                          Text(
+                            AppLocalizations.of(context)!.hi,
+                            style: Theme.of(context).textTheme.titleLarge,
                           ),
-                        ),
-                      ],
+                          Text(
+                            AppLocalizations.of(context)!.welcome_to_our_lxp,
+                            style: Theme.of(context).textTheme.bodyMedium
+                          ),
+                        ],
+                      ),
                     ),
                   ],
                 ),
                 SizedBox(height: 24.h),
                 Container(
                   decoration: BoxDecoration(
-                    color: Colors.white,
+                    color: Theme.of(context).scaffoldBackgroundColor,
                     borderRadius: BorderRadius.circular(12),
                     boxShadow: [
                       BoxShadow(
-                        color: ColorsManager.shadow,
+                        color: Theme.of(context).shadowColor,
                         spreadRadius: 2,
                         blurRadius: 5,
                       ),
@@ -75,7 +76,7 @@ class _HomeState extends State<Home> {
                     children: [
                       GamificationItem(
                         imagePath: AssetsManager.badges,
-                        title: "Badges",
+                        title: AppLocalizations.of(context)!.badges,
                         amount: "1",
                         textColor: ColorsManager.lightBlue,
                       ),
@@ -87,7 +88,7 @@ class _HomeState extends State<Home> {
                       SizedBox(width: 12),
                       GamificationItem(
                         imagePath: AssetsManager.experiencePoints,
-                        title: "Experience Points",
+                        title: AppLocalizations.of(context)!.experience_points,
                         amount: "10",
                         textColor: ColorsManager.lightPurple,
                       ),
@@ -99,7 +100,7 @@ class _HomeState extends State<Home> {
                       ),
                       GamificationItem(
                         imagePath: AssetsManager.coins,
-                        title: "Coins",
+                        title: AppLocalizations.of(context)!.coins,
                         amount: "50",
                         textColor: ColorsManager.gold,
                       ),
@@ -110,11 +111,11 @@ class _HomeState extends State<Home> {
                 Container(
                   padding: REdgeInsets.symmetric(horizontal: 16, vertical: 16),
                   decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(12.r),
+                    color: Theme.of(context).scaffoldBackgroundColor,
+                    borderRadius: BorderRadius.circular(12),
                     boxShadow: [
                       BoxShadow(
-                        color: ColorsManager.shadow,
+                        color: Theme.of(context).shadowColor,
                         spreadRadius: 2,
                         blurRadius: 5,
                       ),
@@ -125,7 +126,7 @@ class _HomeState extends State<Home> {
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
                       Text(
-                        "Roadmap",
+                        AppLocalizations.of(context)!.roadmap,
                         style: Theme.of(context).textTheme.labelMedium,
                       ),
                       Text(
@@ -163,11 +164,11 @@ class _HomeState extends State<Home> {
                 Container(
                   padding: REdgeInsets.symmetric(horizontal: 16, vertical: 16),
                   decoration: BoxDecoration(
-                    color: Colors.white,
+                    color: Theme.of(context).scaffoldBackgroundColor,
                     borderRadius: BorderRadius.circular(12),
                     boxShadow: [
                       BoxShadow(
-                        color: ColorsManager.shadow,
+                        color: Theme.of(context).shadowColor,
                         spreadRadius: 2,
                         blurRadius: 5,
                       ),
@@ -177,7 +178,7 @@ class _HomeState extends State<Home> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "Courses enrolled",
+                        AppLocalizations.of(context)!.courses_enrolled,
                         style: Theme.of(context).textTheme.labelMedium,
                       ),
                       SizedBox(height: 12.h),

@@ -47,6 +47,9 @@ dependencies:
   file_picker: ^10.1.2
   font_awesome_flutter: ^10.8.0
   image_picker: ^1.1.2
+  intl: any
+  flutter_localizations:
+    sdk: flutter
 
 dev_dependencies:
   flutter_test:
@@ -69,6 +72,7 @@ flutter:
   # included with your application, so that you can use the icons in
   # the material Icons class.
   uses-material-design: true
+  generate: true
 
   # To add assets to your application, add an assets section, like this:
   assets:

@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:mentora_app/core/colors_manager.dart';
 
 class ChatBot extends StatefulWidget {
   const ChatBot({super.key});
@@ -70,12 +72,12 @@ class _ChatBotState extends State<ChatBot> {
         children: [
           ListTile(
             leading: Icon(Icons.help_outline),
-            title: Text('FAQ'),
+            title: Text(AppLocalizations.of(context)!.faq),
             onTap: () {},
           ),
           ListTile(
             leading: Icon(Icons.feedback),
-            title: Text('Feedback'),
+            title: Text(AppLocalizations.of(context)!.feedback),
             onTap: () {},
           ),
         ],
@@ -91,17 +93,15 @@ class _ChatBotState extends State<ChatBot> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: Colors.white,
         elevation: 0,
         leading: IconButton(
-          icon: Icon(Icons.more_vert, color: Colors.black),
+          icon: Icon(Icons.more_vert, color: Theme.of(context).iconTheme.color),
           onPressed: _openMenu,
         ),
         actions: [
           IconButton(
-            icon: Icon(Icons.close, color: Colors.black54),
+            icon: Icon(Icons.close, color: Theme.of(context).iconTheme.color),
             onPressed: () {
               Navigator.pop(context); // Close chat session
             },
@@ -120,31 +120,31 @@ class _ChatBotState extends State<ChatBot> {
 
   Widget _buildHeader() {
     return Padding(
-      padding: const EdgeInsets.all(16.0),
+      padding: REdgeInsets.all(16.0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Row(
             children: [
               CircleAvatar(
-                backgroundColor: Color(0xFF1D24CA),
+                backgroundColor: ColorsManager.blue,
                 child: Icon(Icons.chat, color: Colors.white),
               ),
-              SizedBox(width: 10),
+              SizedBox(width: 10.w),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "Chatbot",
+                    AppLocalizations.of(context)!.chatbot,
                     style: GoogleFonts.poppins(
-                      fontSize: 16,
+                      fontSize: 16.sp,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
                   Text(
-                    "Support Agent",
+                    AppLocalizations.of(context)!.support_agent,
                     style: GoogleFonts.poppins(
-                      fontSize: 12,
+                      fontSize: 12.sp,
                       color: Colors.grey,
                     ),
                   ),
@@ -157,14 +157,14 @@ class _ChatBotState extends State<ChatBot> {
               IconButton(
                 icon: Icon(
                   FontAwesomeIcons.thumbsUp,
-                  color: isLiked ? Color(0xFF1D24CA) : Colors.grey,
+                  color: isLiked ? ColorsManager.blue : Theme.of(context).iconTheme.color,
                 ),
                 onPressed: _toggleLike,
               ),
               IconButton(
                 icon: Icon(
                   FontAwesomeIcons.thumbsDown,
-                  color: isDisliked ? Color(0xFF1D24CA) : Colors.grey,
+                  color: isDisliked ? ColorsManager.blue : Theme.of(context).iconTheme.color,
                 ),
                 onPressed: _toggleDislike,
               ),
@@ -177,7 +177,7 @@ class _ChatBotState extends State<ChatBot> {
 
   Widget _buildChatSection() {
     return ListView.builder(
-      padding: EdgeInsets.all(16),
+      padding: REdgeInsets.all(16),
       itemCount: _messages.length,
       itemBuilder: (context, index) {
         final message = _messages[index];
@@ -189,10 +189,10 @@ class _ChatBotState extends State<ChatBot> {
           children: [
             // Timestamp above the message
             Padding(
-              padding: const EdgeInsets.symmetric(vertical: 4),
+              padding: REdgeInsets.symmetric(vertical: 4),
               child: Text(
                 message['timestamp'],
-                style: GoogleFonts.poppins(fontSize: 10, color: Colors.grey),
+                style: GoogleFonts.poppins(fontSize: 10.sp, color: Colors.grey),
               ),
             ),
             // Chat bubble
@@ -205,16 +205,16 @@ class _ChatBotState extends State<ChatBot> {
 
   Widget _buildChatBubble(String message, {required bool isBot}) {
     return Container(
-      margin: EdgeInsets.symmetric(vertical: 5),
-      padding: EdgeInsets.all(12),
+      margin: REdgeInsets.symmetric(vertical: 5),
+      padding: REdgeInsets.all(12),
       decoration: BoxDecoration(
         color: isBot ? Colors.grey[200] : Color(0xFF1D24CA),
-        borderRadius: BorderRadius.circular(12),
+        borderRadius: BorderRadius.circular(12.r),
       ),
       child: Text(
         message,
         style: GoogleFonts.poppins(
-          fontSize: 14,
+          fontSize: 14.sp,
           color: isBot ? Colors.black87 : Colors.white,
         ),
       ),
@@ -230,11 +230,11 @@ class _ChatBotState extends State<ChatBot> {
       child: Row(
         children: [
           IconButton(
-            icon: Icon(Icons.emoji_emotions_outlined, color: Colors.black54),
+            icon: Icon(Icons.emoji_emotions_outlined, color: Theme.of(context).iconTheme.color),
             onPressed: () {}, // Open emoji picker
           ),
           IconButton(
-            icon: Icon(Icons.attach_file, color: Colors.black54),
+            icon: Icon(Icons.attach_file, color: Theme.of(context).iconTheme.color),
             onPressed: () async {
               await FilePicker.platform.pickFiles();
             }, // File upload
@@ -244,13 +244,13 @@ class _ChatBotState extends State<ChatBot> {
               controller: _messageController,
               cursorHeight: 30.h,
               decoration: InputDecoration(
-                hintText: "Write a message",
+                hintText: AppLocalizations.of(context)!.write_a_message,
                 contentPadding: REdgeInsets.all(6),
               )
             ),
           ),
           IconButton(
-            icon: Icon(Icons.send, color: Color(0xFF1D24CA)),
+            icon: Icon(Icons.send, color: ColorsManager.blue),
             onPressed: _sendMessage, // Send message
           ),
         ],

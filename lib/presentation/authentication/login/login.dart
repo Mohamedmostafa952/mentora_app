@@ -8,6 +8,7 @@ import 'package:mentora_app/core/widgets/custom_elevated_button.dart';
 import 'package:mentora_app/core/widgets/custom_text_button.dart';
 import 'package:mentora_app/presentation/authentication/widgets/custom_row.dart';
 import 'package:mentora_app/presentation/authentication/widgets/custom_text_form_field.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key, this.fromSignup = false});
@@ -58,12 +59,12 @@ class _LoginState extends State<Login> {
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
                       CustomTextFormField(
-                        text: "Enter Your Email",
+                        text: AppLocalizations.of(context)!.enter_your_email,
                         onValidator: (newValue) {
                           if (newValue == null || newValue.isEmpty) {
-                            return "Please enter your email";
+                            return AppLocalizations.of(context)!.please_enter_your_email;
                           } else if (!RegExp(emailRegex).hasMatch(newValue)) {
-                            return "Invalid Email";
+                            return AppLocalizations.of(context)!.invalid_email;
                           }
                           email = newValue;
                           return null;
@@ -71,18 +72,18 @@ class _LoginState extends State<Login> {
                       ),
                       SizedBox(height: 32.h),
                       CustomTextFormField(
-                        text: "Enter Your Password",
+                        text: AppLocalizations.of(context)!.enter_your_password,
                         suffixIcon:
                         isObscure ? Icons.visibility_off : Icons.visibility,
                         onPress: onPasswordVisibility,
                         isObscure: isObscure,
                         onValidator: (newValue) {
                           if (newValue == null || newValue.isEmpty) {
-                            return "Please enter your password";
+                            return AppLocalizations.of(context)!.please_enter_your_password;
                           } else if (!RegExp(
                             passwordRegex,
                           ).hasMatch(newValue)) {
-                            return "Invalid Password";
+                            return AppLocalizations.of(context)!.invalid_password;
                           }
                           password = newValue;
                           return null;
@@ -92,13 +93,13 @@ class _LoginState extends State<Login> {
                       Align(
                         alignment: Alignment.centerRight,
                         child: CustomTextButton(
-                          text: "Forget Password",
+                          text: AppLocalizations.of(context)!.forget_password,
                           onPress: () {},
                         ),
                       ),
                       SizedBox(height: 26.h),
                       CustomElevatedButton(
-                        text: "Login",
+                        text: AppLocalizations.of(context)!.login,
                         onPress: () {
                           if (formKey.currentState!.validate()) {
                             print(email);
@@ -125,7 +126,7 @@ class _LoginState extends State<Login> {
           child: Column(
             children: [
               Text(
-                "Hi, Welcome Back! 👋",
+                AppLocalizations.of(context)!.hi_welcome_back,
                 textAlign: TextAlign.center,
                 style: Theme.of(context).textTheme.titleMedium,
               ),
@@ -139,12 +140,12 @@ class _LoginState extends State<Login> {
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
                         CustomTextFormField(
-                          text: "Enter Your Email",
+                          text: AppLocalizations.of(context)!.enter_your_email,
                           onValidator: (newValue) {
                             if (newValue == null || newValue.isEmpty) {
-                              return "Please enter your email";
+                              return AppLocalizations.of(context)!.please_enter_your_email;
                             } else if (!RegExp(emailRegex).hasMatch(newValue)) {
-                              return "Invalid Email";
+                              return AppLocalizations.of(context)!.invalid_email;
                             }
                             email = newValue;
                             return null;
@@ -152,18 +153,18 @@ class _LoginState extends State<Login> {
                         ),
                         SizedBox(height: 28.h),
                         CustomTextFormField(
-                          text: "Enter Your Password",
+                          text: AppLocalizations.of(context)!.enter_your_password,
                           suffixIcon:
                               isObscure ? Icons.visibility_off : Icons.visibility,
                           onPress: onPasswordVisibility,
                           isObscure: isObscure,
                           onValidator: (newValue) {
                             if (newValue == null || newValue.isEmpty) {
-                              return "Please enter your password";
+                              return AppLocalizations.of(context)!.please_enter_your_password;
                             } else if (!RegExp(
                               passwordRegex,
                             ).hasMatch(newValue)) {
-                              return "Invalid Password";
+                              return AppLocalizations.of(context)!.invalid_password;
                             }
                             password = newValue;
                             return null;
@@ -172,12 +173,12 @@ class _LoginState extends State<Login> {
                         Align(
                           alignment: Alignment.centerRight,
                           child: CustomTextButton(
-                            text: "Forget Password",
+                            text: AppLocalizations.of(context)!.forget_password,
                             onPress: () {},
                           ),
                         ),
                         CustomElevatedButton(
-                          text: "Login",
+                          text: AppLocalizations.of(context)!.login,
                           onPress: () {
                             if (formKey.currentState!.validate()) {
                               print(email);
@@ -193,19 +194,19 @@ class _LoginState extends State<Login> {
                             Expanded(
                               child: Container(
                                 height: 1,
-                                color: ColorsManager.black,
+                                color: Theme.of(context).secondaryHeaderColor
                               ),
                             ),
                             SizedBox(width: 12.w),
                             Text(
-                              "or with",
+                              AppLocalizations.of(context)!.or_with,
                               style: Theme.of(context).textTheme.bodyMedium,
                             ),
                             SizedBox(width: 12.w),
                             Expanded(
                               child: Container(
                                 height: 1,
-                                color: ColorsManager.black,
+                                color: Theme.of(context).secondaryHeaderColor,
                               ),
                             ),
                           ],
@@ -230,8 +231,8 @@ class _LoginState extends State<Login> {
                         ),
                         SizedBox(height: 28.h),
                         CustomRow(
-                          text: "Don’t have an account?",
-                          buttonText: "Signup",
+                          text: AppLocalizations.of(context)!.dont_have_account,
+                          buttonText: AppLocalizations.of(context)!.signup,
                           onPress: () {
                             Navigator.pushNamed(context, RoutesManager.signup);
                           },

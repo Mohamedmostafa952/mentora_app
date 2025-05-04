@@ -21,6 +21,7 @@ class CustomDropDownMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DropdownButtonFormField(
+      dropdownColor: Theme.of(context).scaffoldBackgroundColor,
       isExpanded: true,
       validator: onValidator,
       items:

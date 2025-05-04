@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mentora_app/config/theme_manager/theme_manager.dart';
 import 'package:mentora_app/core/routes_manager.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class MentoraApp extends StatelessWidget {
   const MentoraApp({super.key});
@@ -13,9 +14,17 @@ class MentoraApp extends StatelessWidget {
       minTextAdapt: true,
       builder: (_,child) => MaterialApp(
         debugShowCheckedModeBanner: false,
+        localizationsDelegates:AppLocalizations.localizationsDelegates,
+        supportedLocales: [
+          Locale('en'),
+          Locale('ar'),
+        ],
+        locale: Locale("en"),
         routes: RoutesManager.routes,
         initialRoute: RoutesManager.mainLayout,
-        theme: ThemeManager.themeData,
+        theme: ThemeManager.light,
+        darkTheme: ThemeManager.dark,
+        themeMode: ThemeMode.dark,
       ),
     );
   }

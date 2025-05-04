@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mentora_app/core/assets_manager.dart';
+import 'package:mentora_app/core/colors_manager.dart';
 import 'package:mentora_app/core/routes_manager.dart';
 import 'package:mentora_app/core/widgets/arrow_back_icon.dart';
 import 'package:mentora_app/core/widgets/custom_elevated_button.dart';
@@ -8,8 +9,8 @@ import 'package:mentora_app/core/widgets/custom_text_button.dart';
 import 'package:mentora_app/presentation/authentication/widgets/custom_date_row.dart';
 import 'package:mentora_app/presentation/authentication/widgets/custom_drop_down_menu.dart';
 import 'package:searchfield/searchfield.dart';
-
 import '../widgets/custom_text_form_field.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class ContinueSignup extends StatefulWidget {
   const ContinueSignup({super.key});
@@ -20,24 +21,6 @@ class ContinueSignup extends StatefulWidget {
 
 class _ContinueSignupState extends State<ContinueSignup> {
   String? selectedGender;
-  List<String> suggestions = [
-    'Front end Developer',
-    'Product Manager',
-    'Data Scientist',
-    'Software Engineer',
-    'Back end Developer',
-    'Mobile Developer',
-    'UX/UI Designer',
-    'DevOps Engineer',
-    'QA Engineer',
-    'Full Stack Developer',
-    'System Architect',
-    'Technical Lead',
-    'Engineering Manager',
-    'AI/ML Engineer',
-    'Cloud Engineer',
-    'Student',
-  ];
   SearchFieldListItem<String>? selectedRole;
   String? selectedDegree;
   var formKey = GlobalKey<FormState>();
@@ -50,7 +33,7 @@ class _ContinueSignupState extends State<ContinueSignup> {
         x,
         style: TextStyle(
           fontSize: 18.sp,
-          color: isSelected ? Colors.blue : null,
+          color: isSelected ? Colors.blue : Theme.of(context).textTheme.bodySmall!.color,
         ),
       ),
     );
@@ -80,12 +63,12 @@ class _ContinueSignupState extends State<ContinueSignup> {
                       CustomDropDownMenu(
                         onValidator: (newValue) {
                           if (newValue == null || newValue.isEmpty) {
-                            return "Please select your gender";
+                            return AppLocalizations.of(context)!.please_select_your_gender;
                           }
                           return null;
                         },
-                        dropDownList: ['Male', 'Female'],
-                        hintText: "Select Gender",
+                        dropDownList: [AppLocalizations.of(context)!.male, AppLocalizations.of(context)!.female],
+                        hintText: AppLocalizations.of(context)!.select_your_gender,
                         value: selectedGender,
                         onChange: (item) {
                           selectedGender = item;
@@ -94,12 +77,13 @@ class _ContinueSignupState extends State<ContinueSignup> {
                       ),
                       SizedBox(height: 16.h),
                       SearchField(
-                        hint: 'Choose your role',
+                        hint: AppLocalizations.of(context)!.choose_your_role,
+                        suggestionsDecoration: SuggestionDecoration(
+                          color: Theme.of(context).scaffoldBackgroundColor
+                        ),
                         searchInputDecoration: SearchInputDecoration(
-                          searchStyle: TextStyle(
-                            color: Colors.black.withOpacity(0.7),
-                            fontSize: 16.sp,
-                          ), // Correct usage
+
+                          searchStyle: Theme.of(context).textTheme.bodySmall, // Correct usage
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(18.r),
                             borderSide: BorderSide(color: Colors.black),
@@ -108,7 +92,7 @@ class _ContinueSignupState extends State<ContinueSignup> {
                         ),
                         validator: (newValue) {
                           if (newValue == null || newValue.isEmpty) {
-                            return "Please choose your role";
+                            return AppLocalizations.of(context)!.please_choose_your_role;
                           }
                           return null;
                         },
@@ -121,7 +105,24 @@ class _ContinueSignupState extends State<ContinueSignup> {
                         },
                         selectedValue: selectedRole,
                         suggestions:
-                            suggestions.map((x) {
+                        [
+                          AppLocalizations.of(context)!.front_end_Developer,
+                          AppLocalizations.of(context)!.product_manager,
+                          AppLocalizations.of(context)!.data_scientist,
+                          AppLocalizations.of(context)!.software_engineer,
+                          AppLocalizations.of(context)!.back_end_developer,
+                          AppLocalizations.of(context)!.mobile_developer,
+                          AppLocalizations.of(context)!.ux_ui_designer,
+                          AppLocalizations.of(context)!.devops_engineer,
+                          AppLocalizations.of(context)!.qa_engineer,
+                          AppLocalizations.of(context)!.full_stack_developer,
+                          AppLocalizations.of(context)!.system_architect,
+                          AppLocalizations.of(context)!.technical_lead,
+                          AppLocalizations.of(context)!.engineering_manager,
+                          AppLocalizations.of(context)!.ai_ml_engineer,
+                          AppLocalizations.of(context)!.cloud_engineer,
+                          AppLocalizations.of(context)!.student,
+                        ].map((x) {
                               return SearchFieldListItem<String>(
                                 x,
                                 item: x,
@@ -137,17 +138,17 @@ class _ContinueSignupState extends State<ContinueSignup> {
                       CustomDropDownMenu(
                         onValidator: (newValue) {
                           if (newValue == null || newValue.isEmpty) {
-                            return "Please choose your degree";
+                            return AppLocalizations.of(context)!.please_choose_your_degree;
                           }
                           return null;
                         },
                         dropDownList: [
-                          "Bachelor's Degree (BA, BS, BBA, etc.)",
-                          "Master's Degree (MA, MS, MBA, etc.)",
-                          "Doctorate (Ph.D., EdD, etc.)",
-                          "High School ",
+                          AppLocalizations.of(context)!.bachelors_degree,
+                          AppLocalizations.of(context)!.masters_degree,
+                          AppLocalizations.of(context)!.doctorate,
+                          AppLocalizations.of(context)!.high_school,
                         ],
-                        hintText: "Choose your degree",
+                        hintText: AppLocalizations.of(context)!.choose_your_degree,
                         value: selectedDegree,
                         onChange: (item) {
                           selectedDegree = item;
@@ -156,24 +157,24 @@ class _ContinueSignupState extends State<ContinueSignup> {
                       ),
                       SizedBox(height: 16.h),
                       CustomTextFormField(
-                        text: "Enter Your College",
+                        text: AppLocalizations.of(context)!.enter_your_college,
                         onValidator: (newValue) {
                           if (newValue == null || newValue.isEmpty) {
-                            return "Please enter your college";
+                            return AppLocalizations.of(context)!.please_enter_your_college;
                           }
                           return null;
                         },
                       ),
                       SizedBox(height: 16.h),
-                      CustomDateRow(text: "Start date"),
+                      CustomDateRow(text: AppLocalizations.of(context)!.start_date),
                       SizedBox(height: 16.h),
-                      CustomDateRow(text: "Expected / End date"),
+                      CustomDateRow(text: AppLocalizations.of(context)!.end_date),
                       SizedBox(height: 40.h),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           CustomTextButton(
-                            text: "Reset",
+                            text: AppLocalizations.of(context)!.reset,
                             onPress: () {
                               formKey.currentState!.reset();
                               setState(() {
@@ -186,7 +187,7 @@ class _ContinueSignupState extends State<ContinueSignup> {
                           ),
                           SizedBox(width: 26.w),
                           CustomElevatedButton(
-                            text: "Start",
+                            text: AppLocalizations.of(context)!.start,
                             onPress: () {
                               if (formKey.currentState!.validate()) {
                                 print(selectedGender);

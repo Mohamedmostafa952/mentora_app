@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:mentora_app/core/colors_manager.dart';
 
 class CustomQuizzesRow extends StatelessWidget {
   const CustomQuizzesRow({super.key, required this.text, required this.iconPath});
@@ -13,9 +13,8 @@ class CustomQuizzesRow extends StatelessWidget {
     return Row(
       children: [
         SvgPicture.asset(iconPath),
-        Text(text, style: Theme.of(context).textTheme.titleSmall!.copyWith(
-            color: ColorsManager.grey
-        ),)
+        SizedBox(width: 4.w,),
+        Text(text, style: Theme.of(context).textTheme.displaySmall)
       ],
     );
   }

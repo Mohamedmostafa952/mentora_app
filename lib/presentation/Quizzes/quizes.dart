@@ -7,6 +7,7 @@ import 'package:mentora_app/core/widgets/custom_elevated_button.dart';
 import 'package:mentora_app/data/DM/quiz_dm.dart';
 import 'package:mentora_app/presentation/Quizzes/widgets/quiz_container.dart';
 import 'package:mentora_app/presentation/results/result.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class Quizzes extends StatefulWidget {
   const Quizzes({super.key});
@@ -48,7 +49,7 @@ class _QuizzesState extends State<Quizzes> {
     List<Widget> tabs = args.isBigFiveFinished
         ? [
       Text(
-        "Skills",
+        AppLocalizations.of(context)!.skills,
         style: Theme.of(context).textTheme.bodyMedium!.copyWith(
           color: ColorsManager.blue,
         ),
@@ -56,13 +57,13 @@ class _QuizzesState extends State<Quizzes> {
     ]
         : [
       Text(
-        "Personality",
+        AppLocalizations.of(context)!.personality,
         style: Theme.of(context).textTheme.bodyMedium!.copyWith(
           color: ColorsManager.blue,
         ),
       ),
       Text(
-        "Skills",
+        AppLocalizations.of(context)!.skills,
         style: Theme.of(context).textTheme.bodyMedium!.copyWith(
           color: ColorsManager.blue,
         ),
@@ -87,14 +88,14 @@ class _QuizzesState extends State<Quizzes> {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   Text(
-                    "Hi,",
+                    AppLocalizations.of(context)!.hi,
                     style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                       color: ColorsManager.white,
                     ),
                   ),
                   SizedBox(height: 10.h),
                   Text(
-                    "Let's test your knowledge",
+                    AppLocalizations.of(context)!.lets_test_your_knowledge,
                     style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                       color: ColorsManager.white,
                     ),
@@ -164,7 +165,7 @@ class _QuizzesState extends State<Quizzes> {
                               Spacer(),
                               criticalThinkingSelected
                                   ? CustomElevatedButton(
-                                text: "Start Quiz",
+                                text: AppLocalizations.of(context)!.start_quiz,
                                 onPress: () {
                                   Navigator.pushNamed(
                                     context,
@@ -176,7 +177,7 @@ class _QuizzesState extends State<Quizzes> {
                                   : Container(),
                               problemSolvingSelected
                                   ? CustomElevatedButton(
-                                text: "Start Quiz",
+                                text: AppLocalizations.of(context)!.start_quiz,
                                 onPress: () {
                                   Navigator.pushNamed(
                                     context,
@@ -231,7 +232,7 @@ class _QuizzesState extends State<Quizzes> {
                               Spacer(),
                               risacSelected
                                   ? CustomElevatedButton(
-                                text: "Start Quiz",
+                                text: AppLocalizations.of(context)!.start_quiz,
                                 onPress: () {
                                   Navigator.pushNamed(
                                     context,
@@ -243,7 +244,7 @@ class _QuizzesState extends State<Quizzes> {
                                   : Container(),
                               bigFiveSelected
                                   ? CustomElevatedButton(
-                                text: "Start Quiz",
+                                text: AppLocalizations.of(context)!.start_quiz,
                                 onPress: () {
                                   Navigator.pushNamed(
                                     context,
@@ -299,7 +300,7 @@ class _QuizzesState extends State<Quizzes> {
                               Spacer(),
                               criticalThinkingSelected
                                   ? CustomElevatedButton(
-                                text: "Start Quiz",
+                                text: AppLocalizations.of(context)!.start_quiz,
                                 onPress: () {
                                   Navigator.pushNamed(
                                     context,
@@ -311,7 +312,7 @@ class _QuizzesState extends State<Quizzes> {
                                   : Container(),
                               problemSolvingSelected
                                   ? CustomElevatedButton(
-                                text: "Start Quiz",
+                                text: AppLocalizations.of(context)!.start_quiz,
                                 onPress: () {
                                   Navigator.pushNamed(
                                     context,

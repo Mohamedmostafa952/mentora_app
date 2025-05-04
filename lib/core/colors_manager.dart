@@ -12,4 +12,9 @@ class ColorsManager{
   static const Color lightPurple = Color(0xFFDF5CF9);
   static const Color gold = Color(0xFFDAA63B);
 
+  static const Color dark = Color(0xFF121212);
+  static const Color darkGrey = Color(0xFF888888);
+  static const Color darkGreyBorder = Color(0xFF444444);
+  static const Color shadowDark = Color(0xFF2A2A2A);
+
 }

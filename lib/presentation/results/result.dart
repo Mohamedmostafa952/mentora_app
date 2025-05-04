@@ -9,6 +9,7 @@ import 'package:mentora_app/presentation/results/result_calculations/critical_th
 import 'package:mentora_app/presentation/results/result_calculations/problem_solving.dart';
 import 'package:mentora_app/presentation/results/result_calculations/risac.dart';
 import 'package:mentora_app/presentation/results/widgets/user_level.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class Result extends StatefulWidget {
   const Result({super.key});
@@ -78,7 +79,7 @@ class _ResultState extends State<Result> {
                   ),
                 ),
                 child: Text(
-                  "Congratulations !",
+                  AppLocalizations.of(context)!.congratulations,
                   style: Theme.of(context).textTheme.labelLarge,
                 ),
               ),
@@ -91,7 +92,7 @@ class _ResultState extends State<Result> {
                       width: 115,
                       height: 115,
                       decoration: BoxDecoration(
-                        color: ColorsManager.white,
+                        color: Theme.of(context).scaffoldBackgroundColor,
                         shape: BoxShape.circle,
                         border: Border.all(color: ColorsManager.blue, width: 8),
                       ),
@@ -110,13 +111,10 @@ class _ResultState extends State<Result> {
                       children: [
                         Text(
                           "100%",
-                          style: Theme.of(context).textTheme.bodyLarge!
-                              .copyWith(color: ColorsManager.blue),
-                        ),
+                          style: Theme.of(context).textTheme.headlineLarge),
                         Text(
-                          "${args.quiz.questions.length} of ${args.quiz.questions.length}",
-                          style: Theme.of(context).textTheme.bodySmall!
-                              .copyWith(color: ColorsManager.blue),
+                          "${args.quiz.questions.length} ${AppLocalizations.of(context)!.of_word} ${args.quiz.questions.length}",
+                          style: Theme.of(context).textTheme.headlineSmall,
                         ),
                       ],
                     ),
@@ -129,7 +127,7 @@ class _ResultState extends State<Result> {
           Padding(
             padding: REdgeInsets.symmetric(horizontal: 6),
             child: Text(
-              "Based on your selections, you are",
+              AppLocalizations.of(context)!.based_on_your_selections_you_are,
               textAlign: TextAlign.center,
               style: Theme.of(context).textTheme.titleMedium,
             ),
@@ -221,13 +219,13 @@ class _ResultState extends State<Result> {
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
                       criticalThinkingResult > 80
-                          ? UserLevel(level: "Advanced Level")
+                          ? UserLevel(level: AppLocalizations.of(context)!.advanced_level)
                           : criticalThinkingResult > 50
-                          ? UserLevel(level: "Mid Level")
-                          : UserLevel(level: "Low Level"),
+                          ? UserLevel(level: AppLocalizations.of(context)!.mid_level)
+                          : UserLevel(level: AppLocalizations.of(context)!.low_level),
                       SizedBox(height: 20.h),
                       Text(
-                        "You got $criticalThinkingResult questions correct",
+                        "${AppLocalizations.of(context)!.you_got} $criticalThinkingResult ${AppLocalizations.of(context)!.questions_correct}",
                         textAlign: TextAlign.center,
                         style: Theme.of(context).textTheme.titleMedium,
                       ),
@@ -235,7 +233,7 @@ class _ResultState extends State<Result> {
                       Divider(
                         indent: 16,
                         endIndent: 16,
-                        color: ColorsManager.black,
+                        color: Theme.of(context).secondaryHeaderColor,
                         thickness: 2,
                       ),
                       SizedBox(height: 16.h,),
@@ -249,7 +247,7 @@ class _ResultState extends State<Result> {
                           borderRadius: BorderRadius.circular(16.r),
                         ),
                         child: Text(
-                            "Your score higher then 65% of the people who have taken this test.",
+                            "${AppLocalizations.of(context)!.your_score_higher_then} 65% ${AppLocalizations.of(context)!.of_the_people_who_have_taken_this_test}",
                           textAlign: TextAlign.center,
                           style: Theme.of(context).textTheme.bodyMedium!
                               .copyWith(color: ColorsManager.white),
@@ -267,13 +265,13 @@ class _ResultState extends State<Result> {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   problemSolvingResult > 80
-                      ? UserLevel(level: "Level A")
+                      ? UserLevel(level: "${AppLocalizations.of(context)!.level} A")
                       : problemSolvingResult > 50
-                      ? UserLevel(level: "Level B")
-                      : UserLevel(level: "Level C"),
+                      ? UserLevel(level: "${AppLocalizations.of(context)!.level} B")
+                      : UserLevel(level: "${AppLocalizations.of(context)!.level} C"),
                   SizedBox(height: 20.h),
                   Text(
-                    "You got $problemSolvingResult questions correct",
+                    "${AppLocalizations.of(context)!.you_got} $problemSolvingResult ${AppLocalizations.of(context)!.questions_correct}",
                     textAlign: TextAlign.center,
                     style: Theme.of(context).textTheme.titleMedium,
                   ),
@@ -281,7 +279,7 @@ class _ResultState extends State<Result> {
                   Divider(
                     indent: 16,
                     endIndent: 16,
-                    color: ColorsManager.black,
+                    color: Theme.of(context).secondaryHeaderColor,
                     thickness: 2,
                   ),
                   SizedBox(height: 16.h,),
@@ -295,7 +293,7 @@ class _ResultState extends State<Result> {
                       borderRadius: BorderRadius.circular(16.r),
                     ),
                     child: Text(
-                      "Your score higher then 65% of the people who have taken this test.",
+                      "${AppLocalizations.of(context)!.your_score_higher_then} 65% ${AppLocalizations.of(context)!.of_the_people_who_have_taken_this_test}",
                       textAlign: TextAlign.center,
                       style: Theme.of(context).textTheme.bodyMedium!
                           .copyWith(color: ColorsManager.white),
@@ -309,7 +307,7 @@ class _ResultState extends State<Result> {
           Padding(
             padding: REdgeInsets.symmetric(horizontal: 44),
             child: CustomElevatedButton(
-              text: args.quiz.index == 3 ? "Go to home" : "Continue",
+              text: args.quiz.index == 3 ? AppLocalizations.of(context)!.go_to_home : AppLocalizations.of(context)!.continue_word,
               onPress: () {
                 // Logic to navigate based on quiz index
                 if (args.quiz.index == 0) {
